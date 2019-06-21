@@ -10,96 +10,90 @@
     </div>
 
     <main class="details" v-for="selectedType in selectedTypes" :key="selectedType.name">
-      <h1 class="title">{{ selectedType.name }}</h1>
+      <h1 class="title" v-poke-type-color="selectedType.name">{{ selectedType.name }}</h1>
       <div class="relations">
-        <section class="card">
-          <h2 class="title -success">Strengths</h2>
-          <div class="body">
-            <div class="type">
-              <h5>Double Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.double_damage_to.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.double_damage_to"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
-            <div class="type">
-              <h5>Half Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.half_damage_to.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.half_damage_to"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
-            <div class="type">
-              <h5>No Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.no_damage_to.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.no_damage_to"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
+        <v-card title="Strengths" color="success">
+          <div class="type">
+            <h5>Deals Double Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.double_damage_to.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.double_damage_to"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
           </div>
-        </section>
-        <section class="card">
-          <h2 class="title -danger">Weaknesses</h2>
-          <div class="body">
-            <div class="type">
-              <h5>Double Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.double_damage_from.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.double_damage_from"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
-            <div class="type">
-              <h5>Half Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.half_damage_from.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.half_damage_from"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
-            <div class="type">
-              <h5>No Damage</h5>
-              <ul class="list">
-                <li v-if="!selectedType.damageRelations.no_damage_from.length">-</li>
-                <li
-                  class="item"
-                  v-for="item in selectedType.damageRelations.no_damage_from"
-                  :key="item.url"
-                >
-                  <strong>{{ item.name }}</strong>
-                </li>
-              </ul>
-            </div>
+          <div class="type">
+            <h5>Suffer Half Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.half_damage_from.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.half_damage_from"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
           </div>
-        </section>
+          <div class="type">
+            <h5>Suffer No Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.no_damage_from.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.no_damage_from"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
+          </div>
+        </v-card>
+        <v-card title="Weaknesses" color="danger">
+          <div class="type">
+            <h5>Suffer Double Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.double_damage_from.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.double_damage_from"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
+          </div>
+          <div class="type">
+            <h5>Deals Half Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.half_damage_to.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.half_damage_to"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
+          </div>
+          <div class="type">
+            <h5>Deals No Damage</h5>
+            <ul class="list">
+              <li v-if="!selectedType.damageRelations.no_damage_to.length">-</li>
+              <li
+                class="item"
+                v-for="item in selectedType.damageRelations.no_damage_to"
+                :key="item.url"
+              >
+                <strong>{{ item.name }}</strong>
+              </li>
+            </ul>
+          </div>
+        </v-card>
       </div>
     </main>
   </div>
@@ -108,10 +102,19 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import OutlineButton from '../components/OutlineButton.vue';
+import VCard from '../components/VCard.vue';
+import getColorByType from './getColorByType';
 
 @Component({
   components: {
     OutlineButton,
+    VCard,
+  },
+  directives: {
+    pokeTypeColor(el, name) {
+      const color = getColorByType(name.value);
+      el.style.setProperty('color', color);
+    },
   },
 })
 export default class Types extends Vue {
@@ -158,10 +161,10 @@ export default class Types extends Vue {
 </script>
 
 
-<style scoped lang="scss">
+<style lang="scss">
 .types {
   display: grid;
-  grid-gap: 32px;
+  grid-gap: 64px;
   padding: 0 60px 60px 60px;
 }
 
@@ -212,31 +215,10 @@ export default class Types extends Vue {
   & > .relations {
     display: grid;
     grid-gap: 32px;
-    grid-template-columns: 1fr 1fr;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
       padding: 32px 64px;
-  }
-}
-
-.card {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 40px;
-  background: #fff;
-  border-radius: 2px;
-  padding: 36px;
-  position: relative;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-  & > .title {
-    font-size: 24px;
-    font-weight: 600;
-
-    &.-success {
-      color: darkseagreen;
-    }
-
-    &.-danger {
-      color: indianred;
     }
   }
 }
