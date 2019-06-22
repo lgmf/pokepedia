@@ -9,8 +9,8 @@ export default new Router({
   routes: [
     {
       path: '/types',
-      name: 'types',
-      component: () => import('./views/Types.vue'),
+      name: 'pokemon types',
+      component: () => import('./views/types/Types.vue'),
     },
     {
       path: '**',
