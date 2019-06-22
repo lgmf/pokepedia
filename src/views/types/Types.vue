@@ -1,13 +1,8 @@
 <template>
   <div class="types">
-    <div class="btn-group">
-      <outline-button
-        class="btn"
-        v-for="type in types"
-        :key="type.url"
-        @clicked="getTypeDetails(type)"
-      >{{ type.name }}</outline-button>
-    </div>
+    <v-select
+      :options="typeOptions"
+      @optionSelected="getTypeDetails($event)"></v-select>
 
     <main class="details" v-for="selectedType in selectedTypes" :key="selectedType.name">
       <h1 class="title" v-poke-type-color="selectedType.name">{{ selectedType.name }}</h1>
@@ -35,18 +30,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { PokemonType, PokemonTypeDetail } from './models';
 import pokeTypeColor from './directives/PokeTypeColor';
 import OutlineButton from '@/components/OutlineButton.vue';
 import VCard from '@/components/VCard.vue';
 import PokeTypeDetail from './components/PokemonTypeDetail.vue';
+import VSelect from '@/components/VSelect.vue';
+import { Option } from '@/core/models';
 
 @Component({
   components: {
     OutlineButton,
-    VCard,
     PokeTypeDetail,
+    VCard,
+    VSelect,
   },
   directives: {
     pokeTypeColor,
@@ -57,18 +55,30 @@ export default class Types extends Vue {
 
   types: PokemonType[] = [];
 
+  typeOptions: Option[] = [];
+
   selectedTypes: PokemonTypeDetail[] = [];
 
   beforeMount() {
-    console.log(this.$route);
     fetch('https://pokeapi.co/api/v2/type')
       .then(resp => resp.json())
       .then(({ results }) => {
         this.types = results;
+        this.typeOptions = this.types.map(type => ({
+          label: type.name,
+          value: type.url,
+        }));
       });
   }
 
-  getTypeDetails({ name, url }: any) {
+  getTypeDetails(selectedType: Option) {
+    // console.log(selectedType);
+    if (!selectedType) {
+      return;
+    }
+
+    const name = selectedType.label;
+    const url = selectedType.value;
     const index = this.types.findIndex(t => t.name === name);
     const currentType = this.types[index];
 
