@@ -25,7 +25,7 @@ export default class OutlineButton extends Vue {
   display: flex;
   justify-content: center;
   background: white;
-  color: darkslateblue;
+  color: #000;
   padding: 20px 32px;
   cursor: pointer;
   border: 2px solid cornflowerblue;
