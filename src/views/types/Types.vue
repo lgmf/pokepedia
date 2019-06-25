@@ -1,12 +1,17 @@
 <template>
   <div class="types">
+    <v-select
+      class="select"
+      :options="typeOptions"
+      @optionSelected="getTypeDetails($event)"></v-select>
+
     <div class="btn-group">
       <outline-button
         class="btn"
-        v-for="type in types"
-        :key="type.url"
-        @clicked="getTypeDetails(type)"
-      >{{ type.name }}</outline-button>
+        v-for="selectedType in selectedTypes"
+        :key="selectedType.name"
+        @clicked="removeOption(selectedType.name)"
+      >{{ selectedType.name }}</outline-button>
     </div>
 
     <main class="details" v-for="selectedType in selectedTypes" :key="selectedType.name">
@@ -35,18 +40,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { PokemonType, PokemonTypeDetail } from './models';
 import pokeTypeColor from './directives/PokeTypeColor';
 import OutlineButton from '@/components/OutlineButton.vue';
 import VCard from '@/components/VCard.vue';
 import PokeTypeDetail from './components/PokemonTypeDetail.vue';
+import VSelect from '@/components/VSelect.vue';
+import { Option } from '@/core/models';
 
 @Component({
   components: {
     OutlineButton,
-    VCard,
     PokeTypeDetail,
+    VCard,
+    VSelect,
   },
   directives: {
     pokeTypeColor,
@@ -57,34 +65,41 @@ export default class Types extends Vue {
 
   types: PokemonType[] = [];
 
+  typeOptions: Option[] = [];
+
   selectedTypes: PokemonTypeDetail[] = [];
 
   beforeMount() {
-    console.log(this.$route);
     fetch('https://pokeapi.co/api/v2/type')
       .then(resp => resp.json())
       .then(({ results }) => {
         this.types = results;
+        this.typeOptions = this.types.map(type => ({
+          label: type.name,
+          value: type.url,
+        }));
       });
   }
 
-  getTypeDetails({ name, url }: any) {
-    const index = this.types.findIndex(t => t.name === name);
-    const currentType = this.types[index];
-
-    if (currentType.active) {
-      currentType.active = false;
-      this.selectedTypes = this.selectedTypes.filter(t => t.name !== name);
+  getTypeDetails(selectedType: Option) {
+    if (!selectedType) {
       return;
     }
 
-    currentType.active = true;
+    const name = selectedType.label;
+    const url = selectedType.value;
+    const index = this.types.findIndex(t => t.name === name);
+    const currentType = this.types[index];
 
     fetch(url)
       .then(resp => resp.json())
       .then((data) => {
         this.handleTypeDetail(name, data);
       });
+  }
+
+  removeOption(name: string) {
+    this.selectedTypes = this.selectedTypes.filter(type => type.name !== name);
   }
 
   isActiveType(name: string) {
@@ -128,44 +143,36 @@ export default class Types extends Vue {
 <style scoped lang="scss">
 .types {
   display: grid;
-  grid-gap: 64px;
-}
+  grid-gap: 20px;
 
-.btn-group {
-  display: grid;
-  grid-gap: 12px;
-  grid-template-columns: repeat(2, 1fr);
+  & > .btn-group {
+    display: flex;
 
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
+    & > .btn {
+      flex: 0 1 10%;
+      margin: 12px;
+      margin-left: 0;
+    }
   }
 
-  @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media screen and (min-width: 1440px) {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-.details {
-  display: grid;
-  grid-gap: 16px;
-
-  & > .title {
-    text-transform: uppercase;
-    font-size: 36px;
-    font-weight: 900;
-  }
-
-  & > .relations {
+  & > .details {
     display: grid;
-    grid-gap: 32px;
+    grid-gap: 16px;
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 1fr 1fr;
-      padding: 32px;
+    & > .title {
+      text-transform: uppercase;
+      font-size: 36px;
+      font-weight: 900;
+    }
+
+    & > .relations {
+      display: grid;
+      grid-gap: 32px;
+
+      @media screen and (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        padding: 32px;
+      }
     }
   }
 }
