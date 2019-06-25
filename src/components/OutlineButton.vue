@@ -26,7 +26,7 @@ export default class OutlineButton extends Vue {
 <style scoped lang="scss">
 .outline-button {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   padding: 8px 12px;
   cursor: pointer;
   border: 2px solid #59a295;
@@ -34,8 +34,16 @@ export default class OutlineButton extends Vue {
   transition: background 0.35s ease-in-out;
   outline: none;
   text-transform: uppercase;
-  font-size: 14px;
   background: darkseagreen;
   color: white;
+
+  & > .title {
+    font-size: 14px;
+    margin-right: 12px;
+  }
+
+  & > .close {
+    font-size: 12px;
+  }
 }
 </style>

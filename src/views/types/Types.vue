@@ -5,7 +5,7 @@
       :options="typeOptions"
       @optionSelected="getTypeDetails($event)"></v-select>
 
-    <div class="btn-group">
+    <div class="badges">
       <outline-button
         class="btn"
         v-for="selectedType in selectedTypes"
@@ -144,16 +144,6 @@ export default class Types extends Vue {
 .types {
   display: grid;
   grid-gap: 20px;
-
-  & > .btn-group {
-    display: flex;
-
-    & > .btn {
-      flex: 0 1 10%;
-      margin: 12px;
-      margin-left: 0;
-    }
-  }
 
   & > .details {
     display: grid;
