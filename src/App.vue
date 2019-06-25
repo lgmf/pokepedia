@@ -71,7 +71,7 @@ export default class App extends Vue {
     }
 
     & > .pagetitle {
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 900;
       color: #42b983;
       text-transform: capitalize;

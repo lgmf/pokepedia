@@ -39,11 +39,11 @@ export default class OutlineButton extends Vue {
 
   & > .title {
     font-size: 14px;
-    margin-right: 12px;
   }
 
   & > .close {
     font-size: 12px;
+    margin-left: auto;
   }
 }
 </style>

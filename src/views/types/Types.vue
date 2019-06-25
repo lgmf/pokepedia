@@ -1,17 +1,19 @@
 <template>
   <div class="types">
-    <v-select
-      class="select"
-      :options="typeOptions"
-      @optionSelected="getTypeDetails($event)"></v-select>
+    <div class="filters">
+      <v-select
+        class="select"
+        :options="typeOptions"
+        @optionSelected="getTypeDetails($event)"></v-select>
 
-    <div class="badges">
-      <outline-button
-        class="btn"
-        v-for="selectedType in selectedTypes"
-        :key="selectedType.name"
-        @clicked="removeOption(selectedType.name)"
-      >{{ selectedType.name }}</outline-button>
+      <div class="badges">
+        <outline-button
+          class="badge"
+          v-for="selectedType in selectedTypes"
+          :key="selectedType.name"
+          @clicked="removeOption(selectedType.name)"
+        >{{ selectedType.name }}</outline-button>
+      </div>
     </div>
 
     <main class="details" v-for="selectedType in selectedTypes" :key="selectedType.name">
@@ -86,6 +88,11 @@ export default class Types extends Vue {
       return;
     }
 
+    if (this.selectedTypes.find(t => t.name === selectedType.label)) {
+      this.removeOption(selectedType.label);
+      return;
+    }
+
     const name = selectedType.label;
     const url = selectedType.value;
     const index = this.types.findIndex(t => t.name === name);
@@ -143,7 +150,26 @@ export default class Types extends Vue {
 <style scoped lang="scss">
 .types {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 64px;
+
+  & > .filters {
+    display: grid;
+    grid-gap: 20px;
+
+    & > .badges {
+      display: grid;
+      grid-gap: 8px;
+      grid-template-columns: repeat(3, 1fr);
+
+      @media screen and (min-width: 768px) {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      @media screen and (min-width: 1024px) {
+        grid-template-columns: repeat(9, 1fr);
+      }
+    }
+  }
 
   & > .details {
     display: grid;
