@@ -1,6 +1,9 @@
 <template>
-  <button class="outline-button" :class="{ '-active': active }" @click="onClick()">
-    <slot></slot>
+  <button class="outline-button" @click="onClick()">
+    <span class="title">
+      <slot></slot>
+    </span>
+    <span class="close">&#10005;</span>
   </button>
 </template>
 
@@ -23,25 +26,16 @@ export default class OutlineButton extends Vue {
 <style scoped lang="scss">
 .outline-button {
   display: flex;
-  justify-content: center;
-  background: white;
-  color: #000;
-  padding: 20px 32px;
+  justify-content: space-between;
+  padding: 8px 12px;
   cursor: pointer;
-  border: 2px solid cornflowerblue;
+  border: 2px solid #59a295;
   border-radius: 8px;
   transition: background 0.35s ease-in-out;
   outline: none;
   text-transform: uppercase;
-  font-size: 18px;
-
-  &:focus {
-    border-color: darkslateblue;
-  }
-
-  &.-active {
-    background: darkslateblue;
-    color: white;
-  }
+  font-size: 14px;
+  background: darkseagreen;
+  color: white;
 }
 </style>

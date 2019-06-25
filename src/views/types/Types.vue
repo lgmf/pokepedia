@@ -1,8 +1,18 @@
 <template>
   <div class="types">
     <v-select
+      class="select"
       :options="typeOptions"
       @optionSelected="getTypeDetails($event)"></v-select>
+
+    <div class="btn-group">
+      <outline-button
+        class="btn"
+        v-for="selectedType in selectedTypes"
+        :key="selectedType.name"
+        @clicked="removeOption(selectedType.name)"
+      >{{ selectedType.name }}</outline-button>
+    </div>
 
     <main class="details" v-for="selectedType in selectedTypes" :key="selectedType.name">
       <h1 class="title" v-poke-type-color="selectedType.name">{{ selectedType.name }}</h1>
@@ -72,7 +82,6 @@ export default class Types extends Vue {
   }
 
   getTypeDetails(selectedType: Option) {
-    // console.log(selectedType);
     if (!selectedType) {
       return;
     }
@@ -82,19 +91,15 @@ export default class Types extends Vue {
     const index = this.types.findIndex(t => t.name === name);
     const currentType = this.types[index];
 
-    if (currentType.active) {
-      currentType.active = false;
-      this.selectedTypes = this.selectedTypes.filter(t => t.name !== name);
-      return;
-    }
-
-    currentType.active = true;
-
     fetch(url)
       .then(resp => resp.json())
       .then((data) => {
         this.handleTypeDetail(name, data);
       });
+  }
+
+  removeOption(name: string) {
+    this.selectedTypes = this.selectedTypes.filter(type => type.name !== name);
   }
 
   isActiveType(name: string) {
@@ -138,44 +143,36 @@ export default class Types extends Vue {
 <style scoped lang="scss">
 .types {
   display: grid;
-  grid-gap: 64px;
-}
+  grid-gap: 20px;
 
-.btn-group {
-  display: grid;
-  grid-gap: 12px;
-  grid-template-columns: repeat(2, 1fr);
+  & > .btn-group {
+    display: flex;
 
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
+    & > .btn {
+      flex: 0 1 10%;
+      margin: 12px;
+      margin-left: 0;
+    }
   }
 
-  @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media screen and (min-width: 1440px) {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-.details {
-  display: grid;
-  grid-gap: 16px;
-
-  & > .title {
-    text-transform: uppercase;
-    font-size: 36px;
-    font-weight: 900;
-  }
-
-  & > .relations {
+  & > .details {
     display: grid;
-    grid-gap: 32px;
+    grid-gap: 16px;
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 1fr 1fr;
-      padding: 32px;
+    & > .title {
+      text-transform: uppercase;
+      font-size: 36px;
+      font-weight: 900;
+    }
+
+    & > .relations {
+      display: grid;
+      grid-gap: 32px;
+
+      @media screen and (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        padding: 32px;
+      }
     }
   }
 }
