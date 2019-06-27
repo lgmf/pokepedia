@@ -1,11 +1,12 @@
 <template>
   <div class="poke-type-detail">
     <h5 class="title">{{ title }}</h5>
-    <ul class="list">
+    <ul class="badges">
       <li v-if="!data.length">-</li>
-      <li class="item" v-for="item in data" :key="item.url">
-        <strong>{{ item.name }}</strong>
-      </li>
+      <poke-type-badge
+        v-for="item in data"
+        :key="item.url"
+        :type="item.name"></poke-type-badge>
     </ul>
   </div>
 </template>
@@ -13,9 +14,13 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { PokemonType } from '../models';
+import PokeTypeBadge from './PokemonTypeBadge.vue';
 
 @Component({
   name: 'poke-type-detail',
+  components: {
+    PokeTypeBadge,
+  },
 })
 export default class PokeTypeDetail extends Vue {
   @Prop()
@@ -36,7 +41,7 @@ export default class PokeTypeDetail extends Vue {
     margin-bottom: 12px;
   }
 
-  & > .list {
+  & > .badges {
     display: grid;
     grid-gap: 8px;
     grid-template-columns: repeat(2, 1fr);
@@ -51,14 +56,6 @@ export default class PokeTypeDetail extends Vue {
 
     @media screen and (min-width: 1440px) {
       grid-template-columns: repeat(6, 1fr);
-    }
-
-    & > .item {
-      padding: 12px 24px;
-      border-radius: 8px;
-      border: 1px solid lightseagreen;
-      color: #000;
-      user-select: none;
     }
   }
 }

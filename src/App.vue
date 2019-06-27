@@ -29,6 +29,7 @@ export default class App extends Vue {
   display: grid;
   grid-gap: 20px;
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 
   & > .header {
     display: flex;

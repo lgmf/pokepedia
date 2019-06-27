@@ -7,12 +7,12 @@
         @optionSelected="getTypeDetails($event)"></v-select>
 
       <div class="badges">
-        <outline-button
-          class="badge"
+        <poke-type-badge
           v-for="selectedType in selectedTypes"
           :key="selectedType.name"
-          @clicked="removeOption(selectedType.name)"
-        >{{ selectedType.name }}</outline-button>
+          :type="selectedType.name"
+          :closable="true"
+          @clicked="removeOption(selectedType.name)"></poke-type-badge>
       </div>
     </div>
 
@@ -43,18 +43,21 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { PokemonType, PokemonTypeDetail } from './models';
-import pokeTypeColor from './directives/PokeTypeColor';
-import OutlineButton from '@/components/OutlineButton.vue';
-import VCard from '@/components/VCard.vue';
-import PokeTypeDetail from './components/PokemonTypeDetail.vue';
-import VSelect from '@/components/VSelect.vue';
+
 import { Option } from '@/core/models';
+import { PokemonType, PokemonTypeDetail } from './models';
+import OutlineButton from '@/components/OutlineButton.vue';
+import PokeTypeBadge from './components/PokemonTypeBadge.vue';
+import pokeTypeColor from './directives/PokeTypeColor';
+import PokeTypeDetail from './components/PokemonTypeDetail.vue';
+import VCard from '@/components/VCard.vue';
+import VSelect from '@/components/VSelect.vue';
 
 @Component({
   components: {
     OutlineButton,
     PokeTypeDetail,
+    PokeTypeBadge,
     VCard,
     VSelect,
   },
