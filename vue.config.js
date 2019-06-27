@@ -9,8 +9,8 @@ module.exports = {
           @import "@/styles/font.scss";
           @import "@/styles/pokemon-types-colors.scss";
           @import "@/styles/reset.scss";
-        `
-      }
-    }
-  }
-}
+        `,
+      },
+    },
+  },
+};

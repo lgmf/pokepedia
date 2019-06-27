@@ -1,7 +1,10 @@
 <template>
   <div class="types">
     <div class="filters">
-      <v-select class="select" :options="typeOptions" @optionSelected="getTypeDetails($event)"></v-select>
+      <v-select
+        class="select"
+        :options="typeOptions"
+        @optionSelected="getTypeDetails($event)"></v-select>
 
       <div class="badges">
         <poke-type-badge
