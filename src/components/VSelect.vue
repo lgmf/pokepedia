@@ -39,8 +39,8 @@ export default class VSelect extends Vue {
 <style lang="scss" scoped>
 .v-select {
   display: inline-block;
-  padding: 8px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 20px;
   text-transform: capitalize;
   background: darkseagreen;
   color: #fff;

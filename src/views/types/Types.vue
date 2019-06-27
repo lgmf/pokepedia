@@ -1,18 +1,17 @@
 <template>
   <div class="types">
     <div class="filters">
-      <v-select
-        class="select"
-        :options="typeOptions"
-        @optionSelected="getTypeDetails($event)"></v-select>
+      <v-select class="select" :options="typeOptions" @optionSelected="getTypeDetails($event)"></v-select>
 
       <div class="badges">
         <poke-type-badge
+          class="badge"
           v-for="selectedType in selectedTypes"
           :key="selectedType.name"
           :type="selectedType.name"
           :closable="true"
-          @clicked="removeOption(selectedType.name)"></poke-type-badge>
+          @clicked="removeOption(selectedType.name)"
+        ></poke-type-badge>
       </div>
     </div>
 
@@ -160,16 +159,26 @@ export default class Types extends Vue {
     grid-gap: 20px;
 
     & > .badges {
-      display: grid;
-      grid-gap: 8px;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: -8px;
+
+      & > .badge {
+        flex: 0 1 calc(33% - 8px);
+        margin-top: 8px;
+        margin-right: 8px;
+      }
 
       @media screen and (min-width: 768px) {
-        grid-template-columns: repeat(6, 1fr);
+        & > .badge {
+          flex-basis: calc(20% - 8px);
+        }
       }
 
       @media screen and (min-width: 1024px) {
-        grid-template-columns: repeat(9, 1fr);
+        & > .badge {
+          flex-basis: calc(10% - 8px);
+        }
       }
     }
   }

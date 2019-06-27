@@ -46,8 +46,9 @@ export default class PokeTypeBadge extends Vue {
 
   & > .title,
   & > .close {
-    color: white;
+    font-size: 12px;
     font-weight: bolder;
+    color: white;
     text-transform: uppercase;
     text-shadow: 0 1px 0 black, 0 0 1px rgba(0, 0, 0, 0.6),
       0 0 2px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.8),
@@ -61,9 +62,7 @@ export default class PokeTypeBadge extends Vue {
 
   & > .close {
     border: none;
-    outline: none;
     background: inherit;
-    font-size: 18px;
     cursor: pointer;
   }
 }
