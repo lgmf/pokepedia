@@ -54,6 +54,7 @@ import pokeTypeColor from './directives/PokeTypeColor';
 import PokeTypeDetail from './components/PokemonTypeDetail.vue';
 import VCard from '@/components/VCard.vue';
 import VSelect from '@/components/VSelect.vue';
+import pokeApi from '@/core/api/PokeApi';
 
 @Component({
   components: {
@@ -77,15 +78,26 @@ export default class Types extends Vue {
   selectedTypes: PokemonTypeDetail[] = [];
 
   beforeMount() {
-    fetch('https://pokeapi.co/api/v2/type')
-      .then(resp => resp.json())
-      .then(({ results }) => {
-        this.types = results;
-        this.typeOptions = this.types.map(type => ({
-          label: type.name,
-          value: type.url,
-        }));
-      });
+    pokeApi.get('type').then(({ results }) => {
+      const byName = (a: PokemonType, b: PokemonType) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+
+        return 0;
+      };
+      this.types = results.sort(byName);
+      this.typeOptions = this.types.map(type => ({
+        label: type.name,
+        value: type.url,
+      }));
+    });
   }
 
   getTypeDetails(selectedType: Option) {
@@ -94,17 +106,12 @@ export default class Types extends Vue {
     }
 
     if (this.selectedTypes.find(t => t.name === selectedType.label)) {
-      this.removeOption(selectedType.label);
       return;
     }
 
     const name = selectedType.label;
-    const url = selectedType.value;
-    const index = this.types.findIndex(t => t.name === name);
-    const currentType = this.types[index];
 
-    fetch(url)
-      .then(resp => resp.json())
+    pokeApi.get(`type/${name}`)
       .then((data) => {
         this.handleTypeDetail(name, data);
       });
@@ -167,7 +174,7 @@ export default class Types extends Vue {
       margin-top: -8px;
 
       & > .badge {
-        flex: 0 1 calc(33% - 8px);
+        flex: 0 0 calc(33% - 8px);
         margin-top: 8px;
         margin-right: 8px;
       }
