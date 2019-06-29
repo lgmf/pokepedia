@@ -3,6 +3,7 @@
     <header class="header">
       <div class="logo"></div>
       <nav class="nav">
+        <router-link to="/pokedex">Pokedex</router-link>
         <router-link to="/types">Types</router-link>
       </nav>
     </header>
@@ -52,13 +53,12 @@ export default class App extends Vue {
         padding: 20px;
         font-size: 20px;
         font-weight: bold;
-        color: darkslateblue;
+        color: #fff;
         text-decoration: none;
 
         &:hover,
         &.router-link-exact-active {
           text-decoration: underline;
-          color: #fff;
         }
       }
     }
