@@ -8,9 +8,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/pokedex',
-      name: 'Pokedex',
-      component: () => import('./views/pokedex/Pokedex.vue'),
+      path: '/effectiveness',
+      name: 'pokemon effectiveness',
+      component: () => import('./views/effectiveness/Effectiveness.vue'),
     },
     {
       path: '/types',
@@ -18,8 +18,16 @@ export default new Router({
       component: () => import('./views/types/Types.vue'),
     },
     {
+      path: '/',
+      redirect: '/effectiveness',
+    },
+    {
+      path: '',
+      redirect: '/effectiveness',
+    },
+    {
       path: '**',
-      redirect: '/pokedex',
+      redirect: '/effectiveness',
     },
   ],
 });

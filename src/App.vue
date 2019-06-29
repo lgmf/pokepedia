@@ -3,7 +3,7 @@
     <header class="header">
       <div class="logo"></div>
       <nav class="nav">
-        <router-link to="/pokedex">Pokedex</router-link>
+        <router-link to="/effectiveness">Pokedex</router-link>
         <router-link to="/types">Types</router-link>
       </nav>
     </header>
@@ -41,7 +41,7 @@ export default class App extends Vue {
     & > .logo {
       width: 150px;
       height: 80px;
-      background-image: url('assets/logo.svg');
+      background-image: url("assets/logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
     }
@@ -72,11 +72,18 @@ export default class App extends Vue {
     }
 
     & > .pagetitle {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 900;
       color: #42b983;
+      text-align: center;
       text-transform: capitalize;
       margin-bottom: 32px;
+      line-height: 1.5;
+
+      @media screen and (min-width: 768px) {
+        line-height: normal;
+        text-align: left;
+      }
     }
   }
 }

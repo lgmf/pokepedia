@@ -1,0 +1,42 @@
+.type-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -8px;
+
+  & > .type {
+    flex: 0 0 calc(33% - 8px);
+    margin-top: 8px;
+    margin-right: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    & > .type {
+      flex-basis: calc(20% - 8px);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    & > .type {
+      flex-basis: calc(10% - 8px);
+    }
+  }
+}
+
+.input-flex {
+  display: inline-flex;
+  padding: 12px 20px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #42b983;
+  transition: border-width 1s ease-in-out;
+
+  &::placeholder {
+    color: #808080;
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-color: darken(#42b983, 20%);
+  }
+}
