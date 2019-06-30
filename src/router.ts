@@ -8,13 +8,26 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/effectiveness',
+      name: 'pokemon effectiveness',
+      component: () => import('./views/effectiveness/Effectiveness.vue'),
+    },
+    {
       path: '/types',
       name: 'pokemon types',
       component: () => import('./views/types/Types.vue'),
     },
     {
+      path: '/',
+      redirect: '/effectiveness',
+    },
+    {
+      path: '',
+      redirect: '/effectiveness',
+    },
+    {
       path: '**',
-      redirect: '/types',
+      redirect: '/effectiveness',
     },
   ],
 });

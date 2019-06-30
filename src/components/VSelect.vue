@@ -1,5 +1,6 @@
 <template>
-  <select class="v-select" v-model="value">
+  <select class="v-select input-flex" v-model="value">
+    <option class="option -placeholder" value disabled selected>Choose an option</option>
     <option
       class="option"
       v-for="option in options"
@@ -38,27 +39,13 @@ export default class VSelect extends Vue {
 
 <style lang="scss" scoped>
 .v-select {
-  display: inline-block;
-  padding: 12px 20px;
-  font-size: 20px;
-  text-transform: capitalize;
-  background: darkseagreen;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-
-  &:hover,
-  &:focus {
-    border-color: #59a295;
-  }
+  background: transparent;
 
   & > .option {
     padding: 8px;
 
-    &:hover {
-      background: #59a295;
-      color: #fff;
+    &.-placeholder {
+      color: #808080;
     }
   }
 }

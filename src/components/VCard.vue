@@ -37,7 +37,8 @@ export default class VCard extends Vue {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 
   & > .title {
-    font-size: 24px;
+    text-transform: capitalize;
+    font-size: 22px;
     font-weight: 600;
 
     &.-success {
