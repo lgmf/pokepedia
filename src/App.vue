@@ -3,7 +3,7 @@
     <header class="header">
       <div class="logo"></div>
       <nav class="nav">
-        <router-link to="/effectiveness">Pokedex</router-link>
+        <router-link to="/effectiveness">Effectiveness</router-link>
         <router-link to="/types">Types</router-link>
       </nav>
     </header>
