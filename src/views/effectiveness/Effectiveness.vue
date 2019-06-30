@@ -7,7 +7,7 @@
       placeholder="Search by a pokemon name"
       inputmode="search"
       autofocus
-    >
+    />
 
     <span v-if="loading">Loading...</span>
 
@@ -24,18 +24,18 @@
             ></poke-type-badge>
           </div>
         </h1>
-        <img class="sprite" :src="pokemon.sprite" alt="pokemon sprite">
+        <img class="sprite" :src="pokemon.sprite" alt="pokemon sprite" />
       </header>
 
       <div class="summary">
         <div class="viewmode">
           <label class="label">
             Defense
-            <input v-model="view" type="radio" class="input-flex" value="def">
+            <input v-model="view" type="radio" class="input-flex" value="def" />
           </label>
           <label class="label">
             Offense
-            <input v-model="view" type="radio" class="input-flex" value="atk">
+            <input v-model="view" type="radio" class="input-flex" value="atk" />
           </label>
         </div>
 
@@ -217,8 +217,12 @@ export default class Effectiveness extends Vue {
         justify-self: center;
 
         & > .label {
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 900;
+
+          @media screen and (min-width: 768px) {
+            font-size: 24px;
+          }
         }
 
         & > .label + .label {
@@ -234,16 +238,12 @@ export default class Effectiveness extends Vue {
           grid-template-columns: repeat(2, 1fr);
         }
 
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 1366px) {
           grid-template-columns: repeat(3, 1fr);
         }
 
-        @media screen and (min-width: 1366px) {
-          grid-template-columns: repeat(4, 1fr);
-        }
-
         @media screen and (min-width: 1920px) {
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(4, 1fr);
         }
       }
     }

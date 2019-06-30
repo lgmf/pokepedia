@@ -9,7 +9,7 @@
     </header>
     <main class="content">
       <h1 class="pagetitle">{{ routeName }}</h1>
-      <router-view/>
+      <router-view />
     </main>
   </div>
 </template>
@@ -27,10 +27,29 @@ export default class App extends Vue {
 
 <style lang="scss">
 #app {
+  max-width: 1920px;
+  margin: 0 auto;
   display: grid;
   grid-gap: 20px;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
+
+  & > .header,
+  & > .content {
+    padding: 0 25px;
+
+    @media screen and (min-width: 768px) {
+      padding: 0 75px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding: 0 100px;
+    }
+
+    @media screen and (min-width: 1366px) {
+      padding: 0 125px;
+    }
+  }
 
   & > .header {
     display: flex;
@@ -39,15 +58,22 @@ export default class App extends Vue {
     background: #42b983;
 
     & > .logo {
+      display: none;
       width: 150px;
       height: 80px;
       background-image: url("assets/logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
+
+      @media screen and (min-width: 768px) {
+        display: unset;
+      }
     }
 
     & > .nav {
       display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
 
       a {
         padding: 20px;
@@ -65,11 +91,7 @@ export default class App extends Vue {
   }
 
   & > .content {
-    padding: 0 30px 30px 30px;
-
-    @media screen and (min-width: 768px) {
-      padding: 0 60px 60px 60px;
-    }
+    padding-bottom: 60px;
 
     & > .pagetitle {
       font-size: 36px;
