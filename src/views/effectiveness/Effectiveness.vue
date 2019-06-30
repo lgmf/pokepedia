@@ -184,10 +184,11 @@ export default class Effectiveness extends Vue {
 
       & > .title {
         text-transform: uppercase;
-        font-size: 30px;
+        font-size: 28px;
         font-weight: 900;
 
         @media screen and (min-width: 768px) {
+          font-size: 30px;
           margin-right: 32px;
         }
 
