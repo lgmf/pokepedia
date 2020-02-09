@@ -1,7 +1,7 @@
-import pokeApi from "@/core/api/PokeApi";
+import pokeApi from '@/core/api/PokeApi';
 import { RootState } from '@/root.state';
 import { createPokemon } from '@/views/effectiveness/models/Pokemon';
-import { PokemonApiResponse } from "@/views/effectiveness/models/PokemonApiResponse";
+import { PokemonApiResponse } from '@/views/effectiveness/models/PokemonApiResponse';
 import { Action, ActionTree } from 'vuex';
 import { EffectivenessState } from '../models/effectiveness.state';
 import { Mutations } from '../mutations';
@@ -20,8 +20,8 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
   } finally {
     commit(Mutations.SET_LOADING, false);
   }
-}
+};
 
 export const actions: ActionTree<EffectivenessState, RootState> = {
-  fetchPokemon
-}
+  fetchPokemon,
+};
