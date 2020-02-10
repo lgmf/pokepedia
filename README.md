@@ -32,3 +32,6 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Lint
+See [Here](https://alligator.io/vuejs/eslint-vue-vetur/)
