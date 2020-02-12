@@ -1,18 +1,13 @@
 <template>
   <div class="effectiveness">
-    <input
-      type="text"
-      class="input-flex"
-      placeholder="Search by a pokemon name"
-      inputmode="search"
-      autofocus
-      :value="search"
-      @input="onSearch($event)"
-    />
+    <input-autocomplete @option-selected="onSearch($event)" />
 
     <span v-if="loading">Loading...</span>
 
-    <main v-else-if="!!pokemon" class="pokemon">
+    <main
+      v-else-if="!!pokemon"
+      class="pokemon"
+    >
       <header class="header">
         <h1 class="title">
           {{ pokemonTitle }}
@@ -25,7 +20,11 @@
             ></poke-type-badge>
           </div>
         </h1>
-        <img class="sprite" :src="pokemon.sprite" alt="pokemon sprite" />
+        <img
+          class="sprite"
+          :src="pokemon.sprite"
+          alt="pokemon sprite"
+        />
       </header>
 
       <div class="summary">
@@ -37,7 +36,8 @@
               @change="changeViewMode('def')"
               type="radio"
               class="input-flex"
-              value="def" />
+              value="def"
+            />
           </label>
           <label class="label">
             Offense
@@ -46,12 +46,20 @@
               @change="changeViewMode('atk')"
               type="radio"
               class="input-flex"
-              value="atk" />
+              value="atk"
+            />
           </label>
         </div>
 
-        <section v-if="viewMode === 'def'" class="section">
-          <v-card v-for="key in defKeys" :key="key" :title="key | damageLabel">
+        <section
+          v-if="viewMode === 'def'"
+          class="section"
+        >
+          <v-card
+            v-for="key in defKeys"
+            :key="key"
+            :title="key | damageLabel"
+          >
             <div class="type-list">
               <poke-type-badge
                 class="type"
@@ -63,8 +71,15 @@
           </v-card>
         </section>
 
-        <section v-else class="section">
-          <v-card v-for="key in atkKeys" :key="key" :title="key | damageLabel('atk')">
+        <section
+          v-else
+          class="section"
+        >
+          <v-card
+            v-for="key in atkKeys"
+            :key="key"
+            :title="key | damageLabel('atk')"
+          >
             <div class="type-list">
               <poke-type-badge
                 class="type"
@@ -83,21 +98,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Watch } from 'vue-property-decorator';
 import {
   State, Action, Getter, namespace,
 } from 'vuex-class';
 
 import { Pokemon, createPokemon, initialState } from './models/Pokemon';
 import { PokemonApiResponse } from './models/PokemonApiResponse';
-import { TypeDamageRelations } from '../types/models';
+import { TypeDamageRelations } from '@/core/models';
 
 import Debounce from '@/core/decorators/debounce';
 import pokeApi from '@/core/api/PokeApi';
-import PokeTypeDetail from '../types/components/PokemonTypeDetail.vue';
-import PokeTypeBadge from '../types/components/PokemonTypeBadge.vue';
-import pokeTypeColor from '../types/directives/PokeTypeColor';
+
+import PokeTypeDetail from '@/components/PokemonTypeDetail.vue';
+import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
+
+import pokeTypeColor from '@/components/directives/PokeTypeColor';
+
 import VCard from '@/components/VCard.vue';
+import InputAutoComplete from '@/components/InputAutoComplete.vue';
+
 import damageLabel from './filters/DamageLabel';
 import { EffectivenessState } from '../../store/effectiveness/models/effectiveness.state';
 import { Mutations } from '../../store/effectiveness/mutations';
@@ -109,6 +130,7 @@ const effectivenessStore = namespace('effectiveness');
     PokeTypeDetail,
     PokeTypeBadge,
     VCard,
+    InputAutoComplete,
   },
   directives: {
     pokeTypeColor,
@@ -158,14 +180,13 @@ export default class Effectiveness extends Vue {
   fetchPokemon!: Function;
 
   @Debounce(800)
-  onSearch(event: Event) {
-    const { value } = event.target as HTMLInputElement;
-    if (!value) {
+  onSearch({ search }: { search: string }) {
+    if (!search) {
       return;
     }
 
-    this.fillSearch(value);
-    this.fetchPokemon(value);
+    this.fillSearch(search);
+    this.fetchPokemon(search);
   }
 }
 </script>

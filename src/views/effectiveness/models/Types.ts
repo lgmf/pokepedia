@@ -19,7 +19,7 @@ export enum Type {
   FAIRY = 'fairy'
 }
 
-export const types = [
+export const Types = [
   Type.NORMAL,
   Type.FIGHTING,
   Type.FLYING,
@@ -37,5 +37,5 @@ export const types = [
   Type.ICE,
   Type.DRAGON,
   Type.DARK,
-  Type.FAIRY
+  Type.FAIRY,
 ];

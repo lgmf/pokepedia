@@ -46,12 +46,11 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 
-import { Option } from '@/core/models';
-import { PokemonType, PokemonTypeDetail } from './models';
+import { Option, PokemonType, PokemonTypeDetail } from '@/core/models';
 import OutlineButton from '@/components/OutlineButton.vue';
-import PokeTypeBadge from './components/PokemonTypeBadge.vue';
-import pokeTypeColor from './directives/PokeTypeColor';
-import PokeTypeDetail from './components/PokemonTypeDetail.vue';
+import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
+import pokeTypeColor from '@/components/directives/PokeTypeColor';
+import PokeTypeDetail from '@/components/PokemonTypeDetail.vue';
 import VCard from '@/components/VCard.vue';
 import VSelect from '@/components/VSelect.vue';
 import pokeApi from '@/core/api/PokeApi';

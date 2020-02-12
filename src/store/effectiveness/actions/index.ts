@@ -25,3 +25,5 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
 export const actions: ActionTree<EffectivenessState, RootState> = {
   fetchPokemon,
 };
+
+export default actions;

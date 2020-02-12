@@ -6,10 +6,11 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import {
-  Component, Vue, Prop, Watch,
+  Component, Prop, Watch,
 } from 'vue-property-decorator';
-import getColorByType from '../helpers/getColorByType';
+import getColorByType from './helpers/getColorByType';
 
 @Component({
   name: 'poke-type-badge',

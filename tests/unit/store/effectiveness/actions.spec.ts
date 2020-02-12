@@ -27,7 +27,7 @@ describe('effectiveness/actions', () => {
       done();
     });
 
-    it('handle pokemon not found', async done => {
+    it('handle pokemon not found', async (done) => {
       PokeApi.get = jest.fn().mockImplementation(() => {
         throw new Error('');
       });
@@ -39,6 +39,6 @@ describe('effectiveness/actions', () => {
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_ERROR, { error: true, errorMessage: 'Pokemon not found' });
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, false);
       done();
-    })
+    });
   });
 });
