@@ -1,17 +1,18 @@
 <template>
   <div class="effectiveness">
     <input
-      v-model="search"
       type="text"
       class="input-flex"
       placeholder="Search by a pokemon name"
       inputmode="search"
       autofocus
+      :value="search"
+      @input="onSearch($event)"
     />
 
     <span v-if="loading">Loading...</span>
 
-    <main v-else-if="pokemon.id" class="pokemon">
+    <main v-else-if="!!pokemon" class="pokemon">
       <header class="header">
         <h1 class="title">
           {{ pokemonTitle }}
@@ -31,15 +32,25 @@
         <div class="viewmode">
           <label class="label">
             Defense
-            <input v-model="view" type="radio" class="input-flex" value="def" />
+            <input
+              :checked="viewMode === 'def'"
+              @change="changeViewMode('def')"
+              type="radio"
+              class="input-flex"
+              value="def" />
           </label>
           <label class="label">
             Offense
-            <input v-model="view" type="radio" class="input-flex" value="atk" />
+            <input
+              :checked="viewMode === 'atk'"
+              @change="changeViewMode('atk')"
+              type="radio"
+              class="input-flex"
+              value="atk" />
           </label>
         </div>
 
-        <section v-if="view === 'def'" class="section">
+        <section v-if="viewMode === 'def'" class="section">
           <v-card v-for="key in defKeys" :key="key" :title="key | damageLabel">
             <div class="type-list">
               <poke-type-badge
@@ -67,15 +78,20 @@
       </div>
     </main>
 
-    <span v-else-if="notFound">Pokemon not found</span>
+    <span v-else-if="error">{{ errorMessage }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import {
+  State, Action, Getter, namespace,
+} from 'vuex-class';
+
 import { Pokemon, createPokemon, initialState } from './models/Pokemon';
 import { PokemonApiResponse } from './models/PokemonApiResponse';
 import { TypeDamageRelations } from '../types/models';
+
 import Debounce from '@/core/decorators/debounce';
 import pokeApi from '@/core/api/PokeApi';
 import PokeTypeDetail from '../types/components/PokemonTypeDetail.vue';
@@ -83,6 +99,10 @@ import PokeTypeBadge from '../types/components/PokemonTypeBadge.vue';
 import pokeTypeColor from '../types/directives/PokeTypeColor';
 import VCard from '@/components/VCard.vue';
 import damageLabel from './filters/DamageLabel';
+import { EffectivenessState } from '../../store/effectiveness/models/effectiveness.state';
+import { Mutations } from '../../store/effectiveness/mutations';
+
+const effectivenessStore = namespace('effectiveness');
 
 @Component({
   components: {
@@ -98,69 +118,54 @@ import damageLabel from './filters/DamageLabel';
   },
 })
 export default class Effectiveness extends Vue {
-  private search: string = '';
+  @effectivenessStore.State
+  loading!: boolean;
 
-  private view: 'atk' | 'def' = 'def';
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.error)
+  error!: boolean;
 
-  private loading: boolean = false;
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.errorMessage)
+  errorMessage!: string;
 
-  private notFound: boolean = false;
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.search)
+  search!: string;
 
-  private pokemonData: Pokemon = {} as Pokemon;
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.viewMode)
+  viewMode!: 'atk' | 'def';
 
-  get pokemon(): Pokemon {
-    return this.pokemonData;
-  }
+  @effectivenessStore.State
+  notFound!: boolean;
 
-  get pokemonTitle(): string {
-    const { id, name } = this.pokemon;
-    return `${name} #${id}`;
-  }
+  @effectivenessStore.State
+  pokemon!: Pokemon;
 
-  get defKeys() {
-    const keys: string[] = [];
-    Object.entries(this.pokemonData.defenseEffectiviness).forEach(
-      ([key, value]) => {
-        if (value.length) {
-          keys.push(key);
-        }
-      },
-    );
-    return keys;
-  }
+  @effectivenessStore.Getter
+  pokemonTitle!: string;
 
-  get atkKeys() {
-    const keys: string[] = [];
-    Object.entries(this.pokemonData.attackEffectiviness).forEach(
-      ([key, value]) => {
-        if (value.length) {
-          keys.push(key);
-        }
-      },
-    );
-    return keys;
-  }
+  @effectivenessStore.Getter
+  defKeys!: string;
 
-  @Watch('search')
+  @effectivenessStore.Getter
+  atkKeys!: string;
+
+  @effectivenessStore.Mutation(Mutations.SET_VIEW_MODE)
+  changeViewMode!: Function;
+
+  @effectivenessStore.Mutation(Mutations.SET_SEARCH)
+  fillSearch!: Function;
+
+  @effectivenessStore.Action
+  fetchPokemon!: Function;
+
   @Debounce(800)
-  async onSearch(value: string) {
+  onSearch(event: Event) {
+    const { value } = event.target as HTMLInputElement;
     if (!value) {
       return;
     }
 
-    this.loading = true;
-    this.notFound = false;
-
-    try {
-      const url = `pokemon/${value.toLowerCase()}`;
-      const data: PokemonApiResponse = await pokeApi.get(url);
-      this.pokemonData = await createPokemon(data);
-    } catch (error) {
-      this.pokemonData = {} as Pokemon;
-      this.notFound = true;
-    } finally {
-      this.loading = false;
-    }
+    this.fillSearch(value);
+    this.fetchPokemon(value);
   }
 }
 </script>
