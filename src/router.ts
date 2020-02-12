@@ -12,11 +12,11 @@ export default new Router({
       name: 'pokemon effectiveness',
       component: () => import('./views/effectiveness/Effectiveness.vue'),
     },
-    {
-      path: '/types',
-      name: 'pokemon types',
-      component: () => import('./views/types/Types.vue'),
-    },
+    // {
+    //   path: '/types',
+    //   name: 'pokemon types',
+    //   component: () => import('./views/types/Types.vue'),
+    // },
     {
       path: '/',
       redirect: '/effectiveness',

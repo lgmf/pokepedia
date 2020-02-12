@@ -77,7 +77,7 @@ export default class Types extends Vue {
   selectedTypes: PokemonTypeDetail[] = [];
 
   beforeMount() {
-    pokeApi.get('type').then(({ results }) => {
+    pokeApi.get<any>('type').then(({ results }) => {
       const byName = (a: PokemonType, b: PokemonType) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();

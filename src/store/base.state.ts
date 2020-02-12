@@ -3,3 +3,5 @@ export interface BaseState {
   error: boolean;
   errorMessage: string;
 }
+
+export default BaseState;

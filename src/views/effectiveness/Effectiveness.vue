@@ -1,8 +1,51 @@
 <template>
   <div class="effectiveness">
-    <input-autocomplete @option-selected="onSearch($event)" />
+    <form
+      class="filters"
+      @submit.prevent
+    >
+      <input-autocomplete
+        :label="'pokemon name'"
+        :suggestionMap="pokemonNameMap"
+        @on-option-selected="onSearch($event)"
+      ></input-autocomplete>
 
-    <span v-if="loading">Loading...</span>
+      <div
+        v-if="!!pokemon"
+        class="viewmode"
+      >
+        <label
+          class="label"
+          for="def"
+        >Defense</label>
+        <input
+          id="def"
+          type="radio"
+          class="input"
+          value="def"
+          :checked="viewMode === 'def'"
+          @change="changeViewMode('def')"
+        />
+
+        <label
+          class="label"
+          for="atk"
+        >Offense</label>
+        <input
+          id="atk"
+          type="radio"
+          class="input"
+          value="atk"
+          :checked="viewMode === 'atk'"
+          @change="changeViewMode('atk')"
+        />
+      </div>
+    </form>
+
+    <span
+      v-if="loading"
+      class="loading"
+    >Loading...</span>
 
     <main
       v-else-if="!!pokemon"
@@ -28,29 +71,6 @@
       </header>
 
       <div class="summary">
-        <div class="viewmode">
-          <label class="label">
-            Defense
-            <input
-              :checked="viewMode === 'def'"
-              @change="changeViewMode('def')"
-              type="radio"
-              class="input-flex"
-              value="def"
-            />
-          </label>
-          <label class="label">
-            Offense
-            <input
-              :checked="viewMode === 'atk'"
-              @change="changeViewMode('atk')"
-              type="radio"
-              class="input-flex"
-              value="atk"
-            />
-          </label>
-        </div>
-
         <section
           v-if="viewMode === 'def'"
           class="section"
@@ -63,7 +83,7 @@
             <div class="type-list">
               <poke-type-badge
                 class="type"
-                v-for="type in pokemon.defenseEffectiviness[key]"
+                v-for="type in pokemon.defenseEffectiveness[key]"
                 :key="type"
                 :type="type"
               ></poke-type-badge>
@@ -83,7 +103,7 @@
             <div class="type-list">
               <poke-type-badge
                 class="type"
-                v-for="type in pokemon.attackEffectiviness[key]"
+                v-for="type in pokemon.attackEffectiveness[key]"
                 :key="type"
                 :type="type"
               ></poke-type-badge>
@@ -98,20 +118,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Watch } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import {
   State, Action, Getter, namespace,
 } from 'vuex-class';
 
 import { Pokemon, createPokemon, initialState } from './models/Pokemon';
 import { PokemonApiResponse } from './models/PokemonApiResponse';
-import { TypeDamageRelations } from '@/core/models';
 
-import Debounce from '@/core/decorators/debounce';
+import { TypeDamageRelations, SuggestionMap } from '@/core/models';
 import pokeApi from '@/core/api/PokeApi';
 
-import PokeTypeDetail from '@/components/PokemonTypeDetail.vue';
 import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
 
 import pokeTypeColor from '@/components/directives/PokeTypeColor';
@@ -127,10 +144,9 @@ const effectivenessStore = namespace('effectiveness');
 
 @Component({
   components: {
-    PokeTypeDetail,
-    PokeTypeBadge,
     VCard,
-    InputAutoComplete,
+    PokeTypeBadge,
+    'input-autocomplete': InputAutoComplete,
   },
   directives: {
     pokeTypeColor,
@@ -140,7 +156,7 @@ const effectivenessStore = namespace('effectiveness');
   },
 })
 export default class Effectiveness extends Vue {
-  @effectivenessStore.State
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.loading)
   loading!: boolean;
 
   @effectivenessStore.State((state: EffectivenessState) => state.ui.error)
@@ -156,10 +172,10 @@ export default class Effectiveness extends Vue {
   viewMode!: 'atk' | 'def';
 
   @effectivenessStore.State
-  notFound!: boolean;
+  pokemon!: Pokemon;
 
   @effectivenessStore.State
-  pokemon!: Pokemon;
+  pokemonNameMap!: SuggestionMap;
 
   @effectivenessStore.Getter
   pokemonTitle!: string;
@@ -179,7 +195,13 @@ export default class Effectiveness extends Vue {
   @effectivenessStore.Action
   fetchPokemon!: Function;
 
-  @Debounce(800)
+  @effectivenessStore.Action
+  fetchPokemonNameMap!: Function;
+
+  mounted() {
+    this.fetchPokemonNameMap();
+  }
+
   onSearch({ search }: { search: string }) {
     if (!search) {
       return;
@@ -194,11 +216,48 @@ export default class Effectiveness extends Vue {
 <style scoped lang="scss">
 .effectiveness {
   display: grid;
-  grid-gap: 64px;
+  grid-gap: 44px;
+
+  & > .filters {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    & > .viewmode {
+      padding: 0 8px;
+      margin-top: 16px;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        margin-top: 0;
+        margin-left: 16px;
+      }
+
+      & > .input {
+        margin-right: 16px;
+      }
+
+      & > .label {
+        color: #808080;
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  & > .loading {
+    justify-self: center;
+    align-self: center;
+  }
 
   & > .pokemon {
     display: grid;
-    grid-gap: 64px;
+    grid-gap: 40px;
 
     & > .header {
       display: flex;
@@ -239,23 +298,6 @@ export default class Effectiveness extends Vue {
     & > .summary {
       display: grid;
       grid-gap: 32px;
-
-      & > .viewmode {
-        justify-self: center;
-
-        & > .label {
-          font-size: 20px;
-          font-weight: 900;
-
-          @media screen and (min-width: 768px) {
-            font-size: 24px;
-          }
-        }
-
-        & > .label + .label {
-          margin-left: 20px;
-        }
-      }
 
       & > .section {
         display: grid;

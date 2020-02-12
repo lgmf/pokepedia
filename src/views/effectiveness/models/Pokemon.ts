@@ -100,7 +100,6 @@ function getDefEffectiveness(pokemonTypes: PokemonType[]) {
 }
 
 export async function createPokemon(data: PokemonApiResponse): Promise<Pokemon> {
-  debugger;
   if (!data) {
     return initialState;
   }
