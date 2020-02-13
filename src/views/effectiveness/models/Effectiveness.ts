@@ -6,3 +6,5 @@ export enum Effectiveness {
   QUARTER = 0.25,
   ZERO = 0
 }
+
+export default Effectiveness;
