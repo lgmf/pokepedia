@@ -7,7 +7,7 @@ describe('effectiveness/getters', () => {
   describe('#pokemonTitle', () => {
     it('happy path', () => {
       const state = { pokemon: mockPokemon };
-      expect(Getters.pokemonTitle(state)).toEqual('pikachu #25');
+      expect(Getters.pokemonTitle(state)).toEqual('#25 - pikachu');
     });
 
     it('handle when there is no pokemon', () => {

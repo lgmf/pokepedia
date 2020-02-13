@@ -5,7 +5,7 @@ import { initialState as pokemon } from '@/views/effectiveness/models/Pokemon';
 describe('effectiveness/mutations', () => {
   let state: EffectivenessState;
 
-  beforeEach(() => (
+  beforeEach(() => {
     state = {
       ui: {
         loading: false,
@@ -16,8 +16,8 @@ describe('effectiveness/mutations', () => {
       },
       pokemon: null,
       pokemonNameMap: {},
-    }
-  ));
+    };
+  });
 
   it(Mutations.SET_LOADING, () => {
     mutations[Mutations.SET_LOADING](state, true);

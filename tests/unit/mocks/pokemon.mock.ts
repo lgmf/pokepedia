@@ -1,4 +1,7 @@
-export default {
+/* eslint-disable max-len */
+import { Pokemon } from '@/views/effectiveness/models/Pokemon';
+
+const mockPokemon: Pokemon = {
   id: 25,
   name: 'pikachu',
   height: 4,
@@ -13,7 +16,7 @@ export default {
       },
     },
   ],
-  attackEffectiviness: {
+  attackEffectiveness: {
     quad: [],
     double: ['flying', 'water'],
     regular: ['normal', 'fighting', 'poison', 'rock', 'bug', 'ghost', 'steel', 'fire', 'psychic', 'ice', 'dark', 'fairy'],
@@ -21,7 +24,7 @@ export default {
     quarter: [],
     zero: ['ground'],
   },
-  defenseEffectiviness: {
+  defenseEffectiveness: {
     quad: [],
     double: ['ground'],
     regular: ['normal', 'fighting', 'poison', 'rock', 'bug', 'ghost', 'fire', 'water', 'grass', 'psychic', 'ice', 'dragon', 'dark', 'fairy'],
@@ -30,3 +33,5 @@ export default {
     zero: [],
   },
 };
+
+export default mockPokemon;
