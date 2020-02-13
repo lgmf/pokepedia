@@ -1,4 +1,4 @@
-# pokedex
+# pokepedia
 
 ## Project setup
 ```
@@ -35,3 +35,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Lint
 See [Here](https://alligator.io/vuejs/eslint-vue-vetur/)
+
+### Deploy
+See [Here](https://pokepedia-cd5d3.web.app/effectiveness)

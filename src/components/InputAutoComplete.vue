@@ -36,7 +36,7 @@ import {
   Vue, Component, Prop, Emit,
 } from 'vue-property-decorator';
 
-import Debounce from '@/core/decorators/debounce';
+import Debounce from '@/core/decorators/Debounce';
 import { SuggestionMap } from '@/core/models';
 
 

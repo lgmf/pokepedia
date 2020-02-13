@@ -4,7 +4,6 @@
       <div class="logo"></div>
       <nav class="nav">
         <router-link to="/effectiveness">Effectiveness</router-link>
-        <!-- <router-link to="/types">Types</router-link> -->
       </nav>
     </header>
     <main class="content">
@@ -15,8 +14,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {

@@ -1,7 +1,7 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
-export default function debounce(wait:number, immediate:boolean = false) {
+export default function Debounce(wait:number, immediate:boolean = false) {
   return function (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
     let timeout:any;
     const originalMethod = descriptor.value;

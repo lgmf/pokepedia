@@ -1,6 +1,6 @@
 import { SuggestionMap } from '../models';
 
-class PokeApi {
+class PokepediaFacadeService {
   get<T>(path: string): Promise<T> {
     const url = this.buildUrl(path);
     return fetch(url).then(resp => resp.json());
@@ -10,10 +10,10 @@ class PokeApi {
     return fetch('pokemon-names.json').then(resp => resp.json());
   }
 
-  private buildUrl(path: string, version: string = 'v2') {
-    const baseUrl = 'https://pokeapi.co/api';
-    return `${baseUrl}/${version}/${path}`;
+  private buildUrl(path: string) {
+    const baseUrl = 'https://us-central1-pokepedia-cd5d3.cloudfunctions.net';
+    return `${baseUrl}/${path}`;
   }
 }
 
-export default new PokeApi();
+export default new PokepediaFacadeService();

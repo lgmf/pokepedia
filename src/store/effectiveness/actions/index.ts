@@ -1,7 +1,6 @@
-import pokeApi from '@/core/api/PokeApi';
+import pokepediaFacadeService from '@/core/api/PokepediaFacadeService';
 import { RootState } from '@/root.state';
-import { createPokemon } from '@/views/effectiveness/models/Pokemon';
-import { PokemonApiResponse } from '@/views/effectiveness/models/PokemonApiResponse';
+import { Pokemon } from '@/views/effectiveness/models/Pokemon';
 import { Action, ActionTree } from 'vuex';
 import { EffectivenessState } from '../models/effectiveness.state';
 import { Mutations } from '../mutations';
@@ -10,10 +9,9 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
   commit(Mutations.SET_LOADING, true);
 
   try {
-    const url = `pokemon/${payload.toLowerCase()}`;
-    const data = await pokeApi.get<PokemonApiResponse>(url);
-    const pokemonData = await createPokemon(data);
-    commit(Mutations.SET_POKEMON, pokemonData);
+    const url = `pokemon?name=${payload.toLowerCase()}`;
+    const pokemon = await pokepediaFacadeService.get<Pokemon>(url);
+    commit(Mutations.SET_POKEMON, pokemon);
   } catch (error) {
     commit(Mutations.SET_POKEMON, null);
     commit(Mutations.SET_ERROR, { error: true, errorMessage: 'Pokemon not found' });
@@ -26,7 +24,7 @@ const fetchPokemonNameMap: Action<EffectivenessState, RootState> = async ({ comm
   commit(Mutations.SET_LOADING, true);
 
   try {
-    const data = await pokeApi.getPokemonNameMap();
+    const data = await pokepediaFacadeService.getPokemonNameMap();
     commit(Mutations.SET_POKEMON_NAME_MAP, data);
   } catch (error) {
     commit(Mutations.SET_POKEMON_NAME_MAP, {});
