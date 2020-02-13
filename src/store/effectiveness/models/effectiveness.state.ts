@@ -1,14 +1,16 @@
-import { Pokemon } from "@/views/effectiveness/models/Pokemon";
+import { Pokemon } from '@/views/effectiveness/models/Pokemon';
 import { BaseState } from '@/store/base.state';
+import { SuggestionMap } from '@/core/models';
 
 interface UI extends BaseState {
-  viewMode: "atk" | "def";
+  viewMode: 'atk' | 'def';
   search: string;
 }
 
 export interface EffectivenessState {
   ui: UI;
   pokemon: Pokemon | null;
+  pokemonNameMap: SuggestionMap;
 }
 
 export function createInitialState(): EffectivenessState {
@@ -17,9 +19,10 @@ export function createInitialState(): EffectivenessState {
       loading: false,
       error: false,
       errorMessage: '',
-      viewMode: "def",
-      search: "",
+      viewMode: 'def',
+      search: '',
     },
-    pokemon: null
-  }
+    pokemon: null,
+    pokemonNameMap: {},
+  };
 }

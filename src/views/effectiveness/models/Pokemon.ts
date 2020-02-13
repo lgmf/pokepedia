@@ -1,9 +1,9 @@
-import { PokemonType } from '@/views/types/models';
+import { PokemonType } from '@/core/models';
 import effectivenessMatrix from './EffectivenessMatrix';
 import { PokemonApiResponse, TypeSlot } from './PokemonApiResponse';
-import { types } from './Types';
+import { Types } from './Types';
 
-export interface TypeEffectiviness {
+export interface TypeEffectiveness {
   quad: string[];
   double: string[];
   regular: string[];
@@ -19,8 +19,8 @@ export interface Pokemon {
   weight: number;
   sprite: string;
   typeSlots: TypeSlot[];
-  attackEffectiviness: TypeEffectiviness;
-  defenseEffectiviness: TypeEffectiviness;
+  attackEffectiveness: TypeEffectiveness;
+  defenseEffectiveness: TypeEffectiveness;
 }
 
 export const initialState: Pokemon = {
@@ -30,7 +30,7 @@ export const initialState: Pokemon = {
   weight: -1,
   sprite: '',
   typeSlots: [],
-  attackEffectiviness: {
+  attackEffectiveness: {
     quad: [],
     double: [],
     regular: [],
@@ -38,78 +38,17 @@ export const initialState: Pokemon = {
     quarter: [],
     zero: [],
   },
-  defenseEffectiviness: {
+  defenseEffectiveness: {
     quad: [],
     double: [],
     regular: [],
     half: [],
     quarter: [],
     zero: [],
-  }
-}
+  },
+};
 
-export async function createPokemon(data: PokemonApiResponse): Promise<Pokemon> {
-  if (!data) {
-    return initialState;
-  }
-
-  let pokemon: Pokemon = {
-    id: data.id,
-    name: data.name,
-    height: data.height,
-    weight: data.weight,
-    sprite: data.sprites.front_default,
-    typeSlots: data.types,
-    attackEffectiviness: initialState.attackEffectiviness,
-    defenseEffectiviness: initialState.defenseEffectiviness
-  };
-
-  const types = data.types.map(typeSlot => typeSlot.type);
-  pokemon.attackEffectiviness = getAtkEffectiveness(types) as TypeEffectiviness;
-  pokemon.defenseEffectiviness = getDefEffectiveness(types) as TypeEffectiviness;
-
-  return pokemon;
-}
-
-function getAtkEffectiveness(pokemonTypes: PokemonType[]) {
-  const [primaryTypeIndex, secondaryTypeIndex] = pokemonTypes.map(type => {
-    return types.findIndex(it => it === type.name);
-  });
-
-  const primaryType = effectivenessMatrix.getAtkEffectiveness(primaryTypeIndex);
-  const secondaryType = effectivenessMatrix.getAtkEffectiveness(secondaryTypeIndex);
-
-  return getTypeEffectivenessFrom(primaryType, secondaryType);
-}
-
-function getDefEffectiveness(pokemonTypes: PokemonType[]) {
-  const [primaryTypeIndex, secondaryTypeIndex] = pokemonTypes.map(type => {
-    return types.findIndex(it => it === type.name);
-  });
-
-  const primaryType = effectivenessMatrix.getDefEffectiveness(primaryTypeIndex);
-  const secondaryType = effectivenessMatrix.getDefEffectiveness(secondaryTypeIndex);
-
-  return getTypeEffectivenessFrom(primaryType, secondaryType);
-}
-
-function getTypeEffectivenessFrom(primaryType: number[], secondaryType: number[]): TypeEffectiviness {
-  return primaryType.reduce((acc, curr, index) => {
-    const type = types[index];
-    const effectiveness = curr * secondaryType[index];
-    const key = getTypeEffectivenessKey(effectiveness);
-
-    return {
-      ...acc,
-      [key]: [
-        ...acc[key],
-        type
-      ]
-    }
-  }, { ...initialState.defenseEffectiviness });
-}
-
-function getTypeEffectivenessKey(effectiveness: number): keyof TypeEffectiviness {
+function getTypeEffectivenessKey(effectiveness: number): keyof TypeEffectiveness {
   switch (effectiveness) {
     case 4:
       return 'quad';
@@ -124,4 +63,61 @@ function getTypeEffectivenessKey(effectiveness: number): keyof TypeEffectiviness
     default:
       return 'zero';
   }
+}
+
+function getTypeEffectivenessFrom(primaryType: number[], secondaryType: number[]): TypeEffectiveness {
+  return primaryType.reduce((acc, curr, index) => {
+    const type = Types[index];
+    const effectiveness = curr * secondaryType[index];
+    const key = getTypeEffectivenessKey(effectiveness);
+
+    return {
+      ...acc,
+      [key]: [
+        ...acc[key],
+        type,
+      ],
+    };
+  }, { ...initialState.defenseEffectiveness });
+}
+
+function getAtkEffectiveness(pokemonTypes: PokemonType[]) {
+  const [primaryTypeIndex, secondaryTypeIndex] = pokemonTypes.map(type => Types.findIndex(it => it === type.name));
+
+  const primaryType = effectivenessMatrix.getAtkEffectiveness(primaryTypeIndex);
+  const secondaryType = effectivenessMatrix.getAtkEffectiveness(secondaryTypeIndex);
+
+  return getTypeEffectivenessFrom(primaryType, secondaryType);
+}
+
+function getDefEffectiveness(pokemonTypes: PokemonType[]) {
+  const [primaryTypeIndex, secondaryTypeIndex] = pokemonTypes.map(type => Types.findIndex(it => it === type.name));
+
+  const primaryType = effectivenessMatrix.getDefEffectiveness(primaryTypeIndex);
+  const secondaryType = effectivenessMatrix.getDefEffectiveness(secondaryTypeIndex);
+
+  return getTypeEffectivenessFrom(primaryType, secondaryType);
+}
+
+export async function createPokemon(data: PokemonApiResponse): Promise<Pokemon> {
+  if (!data) {
+    return initialState;
+  }
+
+  const pokemon: Pokemon = {
+    id: data.id,
+    name: data.name,
+    height: data.height,
+    weight: data.weight,
+    sprite: data.sprites.front_default,
+    typeSlots: data.types,
+    attackEffectiveness: initialState.attackEffectiveness,
+    defenseEffectiveness: initialState.defenseEffectiveness,
+  };
+
+  const types = data.types.map(typeSlot => typeSlot.type);
+  pokemon.attackEffectiveness = getAtkEffectiveness(types) as TypeEffectiveness;
+  pokemon.defenseEffectiveness = getDefEffectiveness(types) as TypeEffectiveness;
+
+  return pokemon;
 }

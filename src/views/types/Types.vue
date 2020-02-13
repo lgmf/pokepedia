@@ -46,12 +46,11 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 
-import { Option } from '@/core/models';
-import { PokemonType, PokemonTypeDetail } from './models';
+import { Option, PokemonType, PokemonTypeDetail } from '@/core/models';
 import OutlineButton from '@/components/OutlineButton.vue';
-import PokeTypeBadge from './components/PokemonTypeBadge.vue';
-import pokeTypeColor from './directives/PokeTypeColor';
-import PokeTypeDetail from './components/PokemonTypeDetail.vue';
+import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
+import pokeTypeColor from '@/components/directives/PokeTypeColor';
+import PokeTypeDetail from '@/components/PokemonTypeDetail.vue';
 import VCard from '@/components/VCard.vue';
 import VSelect from '@/components/VSelect.vue';
 import pokeApi from '@/core/api/PokeApi';
@@ -78,7 +77,7 @@ export default class Types extends Vue {
   selectedTypes: PokemonTypeDetail[] = [];
 
   beforeMount() {
-    pokeApi.get('type').then(({ results }) => {
+    pokeApi.get<any>('type').then(({ results }) => {
       const byName = (a: PokemonType, b: PokemonType) => {
         const nameA = a.name.toUpperCase();
         const nameB = b.name.toUpperCase();

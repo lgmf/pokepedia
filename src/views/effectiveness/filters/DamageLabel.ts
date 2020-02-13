@@ -1,6 +1,6 @@
-import { TypeEffectiviness } from '../models/Pokemon';
+import { TypeEffectiveness } from '../models/Pokemon';
 
-export default (value: keyof TypeEffectiviness, damageType: 'def' | 'atk' = 'def') => {
+export default (value: keyof TypeEffectiveness, damageType: 'def' | 'atk' = 'def') => {
   const prefix = damageType === 'def' ? 'takes' : 'deals';
   const suffix = damageType === 'def' ? 'from' : 'to';
 
@@ -16,6 +16,6 @@ export default (value: keyof TypeEffectiviness, damageType: 'def' | 'atk' = 'def
     case 'quarter':
       return `${prefix} ¼× damage ${suffix}`;
     default:
-        return `${prefix} no damage ${suffix}`;
+      return `${prefix} no damage ${suffix}`;
   }
 };

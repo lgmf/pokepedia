@@ -1,4 +1,4 @@
-import { mutations, Mutations } from "@/store/effectiveness/mutations";
+import { mutations, Mutations } from '@/store/effectiveness/mutations';
 import { EffectivenessState } from '@/store/effectiveness/models/effectiveness.state';
 import { initialState as pokemon } from '@/views/effectiveness/models/Pokemon';
 
@@ -12,11 +12,12 @@ describe('effectiveness/mutations', () => {
         error: false,
         errorMessage: '',
         search: '',
-        viewMode: 'def'
+        viewMode: 'def',
       },
-      pokemon: null
+      pokemon: null,
+      pokemonNameMap: {},
     }
-  ))
+  ));
 
   it(Mutations.SET_LOADING, () => {
     mutations[Mutations.SET_LOADING](state, true);
@@ -56,4 +57,4 @@ describe('effectiveness/mutations', () => {
     mutations[Mutations.SET_POKEMON](state, pokemon);
     expect(state.pokemon).toEqual(pokemon);
   });
-})
+});

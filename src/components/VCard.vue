@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component({
   name: 'v-card',
@@ -21,7 +22,7 @@ export default class VCard extends Vue {
   title!: string;
 
   @Prop()
-  color!: 'success'|'danger'|'default';
+  color!: 'success' | 'danger' | 'default';
 }
 </script>
 

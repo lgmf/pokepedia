@@ -1,4 +1,5 @@
-import { PokemonType } from '@/views/types/models';
+/* eslint-disable camelcase */
+import { PokemonType } from '@/core/models';
 
 export interface TypeSlot {
   slot: number;

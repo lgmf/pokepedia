@@ -1,4 +1,4 @@
-import { getters } from "@/store/effectiveness/getters"
+import { getters } from '@/store/effectiveness/getters';
 import mockPokemon from '../../mocks/pokemon.mock';
 
 const Getters = getters as any;
@@ -14,12 +14,12 @@ describe('effectiveness/getters', () => {
       const state = { pokemon: null };
       expect(Getters.pokemonTitle(state)).toEqual('');
     });
-  })
+  });
 
   describe('#defKeys', () => {
     it('happy path', () => {
       const state = { pokemon: mockPokemon };
-      expect(Getters.defKeys(state)).toEqual(["double", "regular", "half"]);
+      expect(Getters.defKeys(state)).toEqual(['double', 'regular', 'half']);
     });
 
     it('handle when there is no pokemon', () => {
@@ -31,7 +31,7 @@ describe('effectiveness/getters', () => {
   describe('#atkKeys', () => {
     it('happy path', () => {
       const state = { pokemon: mockPokemon };
-      expect(Getters.atkKeys(state)).toEqual(["double", "regular", "half", "zero"]);
+      expect(Getters.atkKeys(state)).toEqual(['double', 'regular', 'half', 'zero']);
     });
 
     it('handle when there is no pokemon', () => {

@@ -4,7 +4,7 @@
       <div class="logo"></div>
       <nav class="nav">
         <router-link to="/effectiveness">Effectiveness</router-link>
-        <router-link to="/types">Types</router-link>
+        <!-- <router-link to="/types">Types</router-link> -->
       </nav>
     </header>
     <main class="content">
@@ -15,7 +15,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 
 @Component
 export default class App extends Vue {
@@ -30,9 +31,13 @@ export default class App extends Vue {
   max-width: 1920px;
   margin: 0 auto;
   display: grid;
-  grid-gap: 20px;
+  row-gap: 40px;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
+
+  @media screen and (min-width: 768px) {
+    row-gap: 20px;
+  }
 
   & > .header,
   & > .content {
@@ -55,19 +60,14 @@ export default class App extends Vue {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #42b983;
+    background: #3d69a4;
 
     & > .logo {
-      display: none;
       width: 150px;
       height: 80px;
       background-image: url("assets/logo.svg");
       background-size: contain;
       background-repeat: no-repeat;
-
-      @media screen and (min-width: 768px) {
-        display: unset;
-      }
     }
 
     & > .nav {
@@ -94,16 +94,21 @@ export default class App extends Vue {
     padding-bottom: 60px;
 
     & > .pagetitle {
-      font-size: 36px;
-      font-weight: 900;
-      color: #42b983;
-      text-align: center;
-      text-transform: capitalize;
-      margin-bottom: 32px;
-      line-height: 1.5;
+      display: none;
 
       @media screen and (min-width: 768px) {
+        display: block;
+        font-size: 36px;
+        font-weight: 900;
+        color: #3d69a4;
+        text-align: center;
+        text-transform: capitalize;
+        margin-bottom: 36px;
+        text-align: center;
         line-height: normal;
+      }
+
+      @media screen and (min-width: 1024px) {
         text-align: left;
       }
     }

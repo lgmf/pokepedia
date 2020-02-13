@@ -1,6 +1,14 @@
 <template>
-  <select class="v-select input-flex" v-model="value">
-    <option class="option -placeholder" value disabled selected>Choose an option</option>
+  <select
+    class="v-select input-flex"
+    v-model="value"
+  >
+    <option
+      class="option -placeholder"
+      value
+      disabled
+      selected
+    >Choose an option</option>
     <option
       class="option"
       v-for="option in options"
@@ -11,9 +19,8 @@
 </template>
 
 <script lang="ts">
-import {
-  Vue, Component, Prop, Watch,
-} from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import { Option } from '@/core/models';
 
 @Component({

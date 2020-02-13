@@ -1,5 +1,8 @@
 <template>
-  <button class="outline-button" @click="onClick()">
+  <button
+    class="outline-button"
+    @click="onClick()"
+  >
     <span class="title">
       <slot></slot>
     </span>
@@ -8,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component({
   name: 'outline-button',

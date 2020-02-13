@@ -12,8 +12,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { PokemonType } from '../models';
+import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
+import { PokemonType } from '@/core/models';
 import PokeTypeBadge from './PokemonTypeBadge.vue';
 
 @Component({
