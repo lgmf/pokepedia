@@ -123,11 +123,9 @@ import {
   State, Action, Getter, namespace,
 } from 'vuex-class';
 
-import { Pokemon, createPokemon, initialState } from './models/Pokemon';
-import { PokemonApiResponse } from './models/PokemonApiResponse';
+import { Pokemon, initialState } from './models/Pokemon';
 
 import { TypeDamageRelations, SuggestionMap } from '@/core/models';
-import pokeApi from '@/core/api/PokeApi';
 
 import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
 

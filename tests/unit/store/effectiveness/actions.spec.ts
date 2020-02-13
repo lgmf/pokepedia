@@ -1,26 +1,22 @@
 import { actions } from '@/store/effectiveness/actions';
 import { Mutations } from '@/store/effectiveness/mutations';
-import PokeApi from '@/core/api/PokeApi';
+import pokepediaFacadeService from '@/core/api/PokepediaFacadeService';
 import mockPokemon from '../../mocks/pokemon.mock';
 
 const Actions = actions as any;
 
 const mockCommit = jest.fn();
 
-jest.mock('@/views/effectiveness/models/Pokemon', () => ({
-  createPokemon: () => Promise.resolve(mockPokemon),
-}));
-
 describe('effectiveness/actions', () => {
   describe('#fetchPokemon', () => {
     const payload = 'pikachu';
 
     it('happy path', async (done) => {
-      PokeApi.get = jest.fn();
+      pokepediaFacadeService.get = jest.fn().mockReturnValue(mockPokemon);
 
       await Actions.fetchPokemon({ commit: mockCommit }, payload);
 
-      expect(PokeApi.get).toHaveBeenCalledWith(`pokemon/${payload}`);
+      expect(pokepediaFacadeService.get).toHaveBeenCalledWith(`pokemon?name=${payload}`);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, true);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_POKEMON, mockPokemon);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, false);
@@ -28,7 +24,7 @@ describe('effectiveness/actions', () => {
     });
 
     it('handle pokemon not found', async (done) => {
-      PokeApi.get = jest.fn().mockImplementation(() => {
+      pokepediaFacadeService.get = jest.fn().mockImplementation(() => {
         throw new Error('');
       });
 
