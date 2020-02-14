@@ -25,6 +25,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+@import "./styles/main.scss";
+
 #app {
   max-width: 1920px;
   margin: 0 auto;

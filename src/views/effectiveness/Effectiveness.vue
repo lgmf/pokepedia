@@ -6,7 +6,9 @@
     >
       <input-autocomplete
         :label="'pokemon name'"
-        :suggestionMap="pokemonNameMap"
+        :suggestions="pokemonSuggestions"
+        :loading="loadingSuggestions"
+        @on-type="fetchPokemonSuggestions($event)"
         @on-option-selected="onSearch($event)"
       ></input-autocomplete>
 
@@ -169,11 +171,14 @@ export default class Effectiveness extends Vue {
   @effectivenessStore.State((state: EffectivenessState) => state.ui.viewMode)
   viewMode!: 'atk' | 'def';
 
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.loadingSuggestions)
+  loadingSuggestions!: boolean;
+
   @effectivenessStore.State
   pokemon!: Pokemon;
 
   @effectivenessStore.State
-  pokemonNameMap!: SuggestionMap;
+  pokemonSuggestions!: string[];
 
   @effectivenessStore.Getter
   pokemonTitle!: string;
@@ -194,11 +199,7 @@ export default class Effectiveness extends Vue {
   fetchPokemon!: Function;
 
   @effectivenessStore.Action
-  fetchPokemonNameMap!: Function;
-
-  mounted() {
-    this.fetchPokemonNameMap();
-  }
+  fetchPokemonSuggestions!: Function;
 
   onSearch({ search }: { search: string }) {
     if (!search) {
