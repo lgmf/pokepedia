@@ -19,8 +19,15 @@
       :class="{ '-floating': !!value }"
     >{{label}}</label>
 
-    <span v-show="loading" class="icon -loading"></span>
-    <span v-show="!loading" class="icon -search"></span>
+    <span
+      v-show="loading"
+      class="icon -loading"
+    ></span>
+
+    <span
+      v-show="!loading"
+      class="icon -search"
+    ></span>
 
     <datalist id="suggestions">
       <option
@@ -59,14 +66,15 @@ export default class InputAutoComplete extends Vue {
   @Debounce(500)
   @Emit()
   onType(event: Event) {
-    return this.value;
+    const target = event.target as HTMLInputElement;
+    return target.value;
   }
 
   @Emit()
   onOptionSelected(event: Event) {
     const target = event.target as HTMLInputElement;
     target.blur();
-    return { search: this.value };
+    return { search: target.value };
   }
 }
 </script>
