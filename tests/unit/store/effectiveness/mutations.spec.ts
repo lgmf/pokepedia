@@ -13,9 +13,10 @@ describe('effectiveness/mutations', () => {
         errorMessage: '',
         search: '',
         viewMode: 'def',
+        loadingSuggestions: false,
       },
       pokemon: null,
-      pokemonNameMap: {},
+      pokemonSuggestions: [],
     };
   });
 

@@ -20,22 +20,25 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
   }
 };
 
-const fetchPokemonNameMap: Action<EffectivenessState, RootState> = async ({ commit }) => {
-  commit(Mutations.SET_LOADING, true);
+const fetchPokemonSuggestions: Action<EffectivenessState, RootState> = async ({ commit, state }, payload: string) => {
+  if (state.ui.search === payload) return;
+
+  commit(Mutations.SET_LOADING_SUGGESTIONS, true);
 
   try {
-    const data = await pokepediaFacadeService.getPokemonNameMap();
-    commit(Mutations.SET_POKEMON_NAME_MAP, data);
+    const url = `pokemonSuggestions?search=${payload.toLowerCase()}`;
+    const suggestions = await pokepediaFacadeService.get<string[]>(url);
+    commit(Mutations.SET_POKEMON_SUGGESTIONS, suggestions);
   } catch (error) {
-    commit(Mutations.SET_POKEMON_NAME_MAP, {});
+    commit(Mutations.SET_POKEMON_SUGGESTIONS, []);
   } finally {
-    commit(Mutations.SET_LOADING, false);
+    commit(Mutations.SET_LOADING_SUGGESTIONS, false);
   }
 };
 
 export const actions: ActionTree<EffectivenessState, RootState> = {
   fetchPokemon,
-  fetchPokemonNameMap,
+  fetchPokemonSuggestions,
 };
 
 export default actions;

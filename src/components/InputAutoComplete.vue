@@ -8,7 +8,7 @@
       list="suggestions"
       autocomplete="off"
       v-model="value"
-      @keyup="onKeyUp($event)"
+      @keyup="onType($event)"
       @change="onOptionSelected($event)"
       autofocus
     />
@@ -19,7 +19,8 @@
       :class="{ '-floating': !!value }"
     >{{label}}</label>
 
-    <span class="searchicon"></span>
+    <span v-show="loading" class="icon -loading"></span>
+    <span v-show="!loading" class="icon -search"></span>
 
     <datalist id="suggestions">
       <option
@@ -39,42 +40,34 @@ import {
 import Debounce from '@/core/decorators/Debounce';
 import { SuggestionMap } from '@/core/models';
 
-
 @Component
 export default class InputAutoComplete extends Vue {
-  private suggestions: string[] = [];
-
-  public value: string = '';
+  private value: string = '';
 
   @Prop()
   label!: string;
 
   @Prop()
-  suggestionMap!: SuggestionMap;
+  suggestions!: string[];
+
+  @Prop()
+  loading!: boolean;
 
   get labelValue(): string {
     return this.label || '';
   }
 
   @Debounce(500)
-  onKeyUp(event: Event) {
-    if (!this.suggestionMap) return;
-
-    const target = event.target as HTMLInputElement;
-    const value = target.value.toLowerCase();
-
-    if (!value) return;
-
-    const key = value[0];
-    const list = this.suggestionMap[key] || [];
-    this.suggestions = list.filter(item => new RegExp(value, 'g').test(item));
+  @Emit()
+  onType(event: Event) {
+    return this.value;
   }
 
   @Emit()
   onOptionSelected(event: Event) {
     const target = event.target as HTMLInputElement;
-    const value = target.value.toLowerCase();
-    return { search: value };
+    target.blur();
+    return { search: this.value };
   }
 }
 </script>
@@ -142,14 +135,25 @@ export default class InputAutoComplete extends Vue {
     }
   }
 
-  & > .searchicon {
+  & > .icon {
     width: $icon-size;
     height: $icon-size;
     position: absolute;
     left: calc(100% - #{$icon-size} - #{$left-spacing});
     bottom: $bottom-spacing;
-    background-image: url("../assets/search-solid.svg");
     background-repeat: no-repeat;
+
+    &.-loading {
+      background-image: url("../assets/spinner-solid.svg");
+      animation: spinner;
+      animation-duration: 0.75s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    &.-search {
+      background-image: url("../assets/search-solid.svg");
+    }
   }
 }
 </style>
