@@ -127,7 +127,7 @@ import {
 
 import { Pokemon, initialState } from './models/Pokemon';
 
-import { TypeDamageRelations, SuggestionMap } from '@/core/models';
+import { TypeDamageRelations } from '@/core/models';
 
 import PokeTypeBadge from '@/components/PokemonTypeBadge.vue';
 

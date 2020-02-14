@@ -38,7 +38,6 @@ import {
 } from 'vue-property-decorator';
 
 import Debounce from '@/core/decorators/Debounce';
-import { SuggestionMap } from '@/core/models';
 
 @Component
 export default class InputAutoComplete extends Vue {
