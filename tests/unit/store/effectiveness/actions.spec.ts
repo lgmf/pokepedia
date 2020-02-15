@@ -19,6 +19,7 @@ describe('effectiveness/actions', () => {
       expect(pokepediaFacadeService.get).toHaveBeenCalledWith(`pokemon?name=${payload}`);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, true);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_POKEMON, mockPokemon);
+      expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_ERROR, { error: false, errorMessage: '' });
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, false);
       done();
     });

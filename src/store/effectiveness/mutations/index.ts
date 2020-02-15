@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { Pokemon } from '@/views/effectiveness/models/Pokemon';
+import { Pokemon } from '@/core/models/Pokemon';
 import { Mutation, MutationTree } from 'vuex';
 import { EffectivenessState } from '../models/effectiveness.state';
 

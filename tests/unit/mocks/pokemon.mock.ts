@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Pokemon } from '@/views/effectiveness/models/Pokemon';
+import { Pokemon } from '@/core/models';
 
 const mockPokemon: Pokemon = {
   id: 25,
@@ -7,6 +7,7 @@ const mockPokemon: Pokemon = {
   height: 4,
   weight: 60,
   sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
+  image: 'https://img.pokemondb.net/artwork/pikachu.jpg',
   typeSlots: [
     {
       slot: 1,

@@ -1,6 +1,6 @@
 import pokepediaFacadeService from '@/core/api/PokepediaFacadeService';
+import { Pokemon } from '@/core/models';
 import { RootState } from '@/root.state';
-import { Pokemon } from '@/views/effectiveness/models/Pokemon';
 import { Action, ActionTree } from 'vuex';
 import { EffectivenessState } from '../models/effectiveness.state';
 import { Mutations } from '../mutations';
@@ -12,6 +12,7 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
     const url = `pokemon?name=${payload.toLowerCase()}`;
     const pokemon = await pokepediaFacadeService.get<Pokemon>(url);
     commit(Mutations.SET_POKEMON, pokemon);
+    commit(Mutations.SET_ERROR, { error: false, errorMessage: '' });
   } catch (error) {
     commit(Mutations.SET_POKEMON, null);
     commit(Mutations.SET_ERROR, { error: true, errorMessage: 'Pokemon not found' });

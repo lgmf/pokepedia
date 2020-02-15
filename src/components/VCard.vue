@@ -1,18 +1,17 @@
 <template>
   <div class="v-card">
-    <h2
-      class="title"
-      :class="{ '-success': color === 'success', '-danger': color === 'danger'}"
-    >{{ title }}</h2>
-    <div class="body">
-      <slot></slot>
-    </div>
+    <header class="header">
+      <h2 class="title">{{ title }}</h2>
+      <slot name="header"></slot>
+    </header>
+    <main class="body">
+      <slot name="body"></slot>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component({
   name: 'v-card',
@@ -20,34 +19,45 @@ import { Component, Prop } from 'vue-property-decorator';
 export default class VCard extends Vue {
   @Prop()
   title!: string;
-
-  @Prop()
-  color!: 'success' | 'danger' | 'default';
 }
 </script>
 
 <style scoped lang="scss">
 .v-card {
   display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 40px;
-  background: #fff;
-  border-radius: 2px;
-  padding: 36px;
+  grid-row-gap: 60px;
   position: relative;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background: #fff;
+  padding: 40px 20px;
+  border-radius: 40px;
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.25);
 
-  & > .title {
-    text-transform: capitalize;
-    font-size: 22px;
-    font-weight: 600;
+  @media screen and (min-width: 768px) {
+    padding: 40px 60px;
+  }
 
-    &.-success {
-      color: darkseagreen;
-    }
+  @media screen and (min-width: 1024px) {
+    padding: 68px 80px;
+  }
 
-    &.-danger {
-      color: indianred;
+  @media screen and (min-width: 1440px) {
+    padding: 68px 120px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    padding: 68px 160px;
+  }
+
+  & > .header {
+    display: grid;
+    grid-row-gap: 24px;
+    background-color: #fff;
+
+    & > .title {
+      font-size: 48px;
+      font-weight: 600;
+      text-transform: capitalize;
+      text-align: center;
     }
   }
 }

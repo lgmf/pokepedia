@@ -1,21 +1,18 @@
-import { TypeEffectiveness } from '../models/Pokemon';
+import { TypeEffectiveness } from '@/core/models';
 
-export default (value: keyof TypeEffectiveness, damageType: 'def' | 'atk' = 'def') => {
-  const prefix = damageType === 'def' ? 'takes' : 'deals';
-  const suffix = damageType === 'def' ? 'from' : 'to';
-
+export default (value: keyof TypeEffectiveness) => {
   switch (value) {
     case 'quad':
-      return `${prefix} 4× damage ${suffix}`;
+      return '4×';
     case 'double':
-      return `${prefix} 2× damage ${suffix}`;
+      return '2×';
     case 'regular':
-      return `${prefix} 1× damage ${suffix}`;
+      return '1×';
     case 'half':
-      return `${prefix} ½× damage ${suffix}`;
+      return '½×';
     case 'quarter':
-      return `${prefix} ¼× damage ${suffix}`;
+      return '¼×';
     default:
-      return `${prefix} no damage ${suffix}`;
+      return '0x';
   }
 };

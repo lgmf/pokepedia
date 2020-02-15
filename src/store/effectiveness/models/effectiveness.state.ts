@@ -1,4 +1,4 @@
-import { Pokemon } from '@/views/effectiveness/models/Pokemon';
+import { Pokemon } from '@/core/models';
 import { BaseState } from '@/store/base.state';
 
 interface UI extends BaseState {

@@ -86,6 +86,7 @@ export default class InputAutoComplete extends Vue {
   $icon-size: 16px;
 
   position: relative;
+  width: 100%;
 
   @media screen and (min-width: 1024px) {
     max-width: 50%;
