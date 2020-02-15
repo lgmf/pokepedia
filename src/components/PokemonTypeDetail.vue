@@ -5,16 +5,15 @@
       <li v-if="!data.length">-</li>
       <poke-type-badge
         v-for="item in data"
-        :key="item.url"
-        :type="item.name"></poke-type-badge>
+        :key="item"
+        :type="item"></poke-type-badge>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
-import { PokemonType } from '@/core/models';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
 import PokeTypeBadge from './PokemonTypeBadge.vue';
 
 @Component({
@@ -28,38 +27,49 @@ export default class PokeTypeDetail extends Vue {
   title!: string;
 
   @Prop()
-  data!: PokemonType[];
+  data!: string[];
 }
 </script>
 
 <style lang="scss" scoped>
 .poke-type-detail {
-  display: block;
-  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
 
   & > .title {
+    flex: 1;
     font-size: 18px;
-    margin-bottom: 12px;
+    font-weight: bolder;
+    line-height: 20px;
+
+    @media screen and (min-width: 1024px) {
+      margin-right: 32px;
+    }
   }
 
   & > .badges {
+    flex: 4;
     display: grid;
-    grid-gap: 8px;
     grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+    column-gap: 16px;
 
     @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media screen and (min-width: 1024px) {
       grid-template-columns: repeat(3, 1fr);
     }
 
+    @media screen and (min-width: 1024px) {
+      flex: 6;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     @media screen and (min-width: 1360px) {
-      grid-template-columns: repeat(6, 1fr);
+      flex: 8;
+      grid-template-columns: repeat(8, 1fr);
     }
 
     @media screen and (min-width: 1440px) {
+      flex: 10;
       grid-template-columns: repeat(10, 1fr);
     }
   }

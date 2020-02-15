@@ -1,6 +1,6 @@
 import { mutations, Mutations } from '@/store/effectiveness/mutations';
 import { EffectivenessState } from '@/store/effectiveness/models/effectiveness.state';
-import { initialState as pokemon } from '@/views/effectiveness/models/Pokemon';
+import { initialState as pokemon } from '@/core/models';
 
 describe('effectiveness/mutations', () => {
   let state: EffectivenessState;

@@ -1,5 +1,12 @@
-import { TypeSlot } from './TypeSlot';
+export interface PokemonType {
+  name: string;
+  url: string;
+}
 
+export interface TypeSlot {
+  slot: number;
+  type: PokemonType;
+}
 
 export interface TypeEffectiveness {
   quad: string[];
@@ -16,6 +23,7 @@ export interface Pokemon {
   height: number;
   weight: number;
   sprite: string;
+  image: string;
   typeSlots: TypeSlot[];
   attackEffectiveness: TypeEffectiveness;
   defenseEffectiveness: TypeEffectiveness;
@@ -27,6 +35,7 @@ export const initialState: Pokemon = {
   height: -1,
   weight: -1,
   sprite: '',
+  image: '',
   typeSlots: [],
   attackEffectiveness: {
     quad: [],

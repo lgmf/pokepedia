@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import {
-  Component, Prop, Watch,
+  Vue, Component, Prop, Watch,
 } from 'vue-property-decorator';
+
 import getColorByType from './helpers/getColorByType';
 
 @Component({
@@ -44,6 +44,7 @@ export default class PokeTypeBadge extends Vue {
   padding: 12px 20px;
   border-radius: 8px;
   user-select: none;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
 
   & > .title,
   & > .close {

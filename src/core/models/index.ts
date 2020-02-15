@@ -1,3 +1,5 @@
 export * from './Option';
-export * from './PokemonType';
-export * from './PokemonTypeDetail';
+export * from './Effectiveness';
+export * from './Environment';
+export * from './Pokemon';
+export * from './Types';
