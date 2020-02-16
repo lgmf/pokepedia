@@ -52,7 +52,7 @@ export default class VSelect extends Vue {
     padding: 8px;
 
     &.-placeholder {
-      color: #808080;
+      color: $background-600;
     }
   }
 }

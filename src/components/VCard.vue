@@ -27,10 +27,14 @@ export default class VCard extends Vue {
   display: grid;
   grid-row-gap: 60px;
   position: relative;
-  background: #fff;
-  padding: 40px 20px;
+  background: $background;
+  padding: 40px 12px;
   border-radius: 40px;
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.25);
+
+  @media screen and (min-width: 425px) {
+    padding: 40px 20px;
+  }
 
   @media screen and (min-width: 768px) {
     padding: 40px 60px;
@@ -51,7 +55,7 @@ export default class VCard extends Vue {
   & > .header {
     display: grid;
     grid-row-gap: 24px;
-    background-color: #fff;
+    background-color: $background;
 
     & > .title {
       font-size: 48px;

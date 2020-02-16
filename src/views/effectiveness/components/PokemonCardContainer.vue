@@ -97,36 +97,6 @@ export default class PokemonCardContainer extends Vue {
 </script>
 
 <style scoped lang="scss">
-
-.pokemon-image {
-  display: none;
-
-  @media screen and (min-width: 1024px) {
-    display: unset;
-    position: absolute;
-    height: 120px;
-    top: 68px;
-    left: 80px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    left: 120px;
-  }
-
-  @media screen and (min-width: 1920px) {
-    left: 160px;
-  }
-}
-
-.pokemon-types {
-  display: flex;
-  justify-content: center;
-
-  & > .type + .type {
-    margin-left: 20px;
-  }
-}
-
 .tabs {
   display: flex;
   justify-content: center;
@@ -140,41 +110,25 @@ export default class PokemonCardContainer extends Vue {
     outline: none;
     font-weight: 900;
     border-radius: 20px;
-    background-color: #fff;
-    color: #3d69a4;
-    border: 1px solid #3d69a4;
+    background-color: $background;
+    color: $primary-300;
+    border: 1px solid $primary-300;
     transition: all 0.1s linear;
 
     &:hover,
     &:focus {
-      box-shadow: 0px 2px 12px #21395a;
+      box-shadow: 0px 2px 12px $primary-600;
     }
 
     &.-active {
-      border-color: #21395a;
-      background-color: #3d69a4;
-      color: #fff;
+      border-color: $primary-600;
+      background-color: $primary-300;
+      color: $background;
     }
   }
 
   & > .tab + .tab {
     margin-left: 20px;
-  }
-}
-
-.type-detail {
-  padding: 32px 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #C4C4C4;
   }
 }
 </style>
