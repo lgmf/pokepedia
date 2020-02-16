@@ -22,25 +22,6 @@
   }
 }
 
-.input-flex {
-  display: inline-flex;
-  padding: 12px 20px;
-  font-size: 18px;
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #42b983;
-  transition: border-width 1s ease-in-out;
-
-  &::placeholder {
-    color: #808080;
-  }
-
-  &:hover,
-  &:focus {
-    border-bottom-color: #266d4d;
-  }
-}
-
 .pokemon-image {
   display: none;
 
@@ -88,6 +69,6 @@
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid #C4C4C4;
+    border-bottom: 1px solid $background-400;
   }
 }

@@ -70,8 +70,7 @@ export default class InputAutoComplete extends Vue {
 <style scoped lang="scss">
 .inputautocomplete {
   $left-spacing: 8px;
-  $bottom-spacing: 12px;
-  $icon-size: 16px;
+  $icon-size: 14px;
 
   position: relative;
   width: 100%;
@@ -83,7 +82,7 @@ export default class InputAutoComplete extends Vue {
   & > .label {
     display: block;
     font-size: 12px;
-    color: #21395a;
+    color: $primary-600;
     font-weight: bold;
     transition: 0.35s ease-in-out;
     text-transform: capitalize;
@@ -96,17 +95,17 @@ export default class InputAutoComplete extends Vue {
     padding: $left-spacing $left-spacing * 5;
     border: none;
     outline: none;
-    border: 1px solid #3d69a4;
+    border: 1px solid $primary-300;
     border-radius: 8px;
     transition: box-shadow 0.35s ease;
-    color: #21395a;
+    color: $primary-600;
 
     &:hover {
-      border-color: #21395a;
+      border-color: $primary-600;
     }
 
     &:focus {
-      box-shadow: 0px 2px 8px #21395a;
+      box-shadow: 0px 2px 8px $primary-600;
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -119,7 +118,7 @@ export default class InputAutoComplete extends Vue {
     height: $icon-size;
     position: absolute;
     left: calc(100% - #{$icon-size} - #{$left-spacing * 2});
-    bottom: $bottom-spacing;
+    bottom: 10px;
     background-repeat: no-repeat;
 
     &.-loading {
@@ -131,8 +130,8 @@ export default class InputAutoComplete extends Vue {
     }
 
     &.-search {
-      left: $left-spacing * 2;
       background-image: url("../assets/search-solid.svg");
+      left: $left-spacing * 2;
     }
   }
 }

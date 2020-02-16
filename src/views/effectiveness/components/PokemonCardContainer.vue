@@ -110,20 +110,20 @@ export default class PokemonCardContainer extends Vue {
     outline: none;
     font-weight: 900;
     border-radius: 20px;
-    background-color: #fff;
-    color: #3d69a4;
-    border: 1px solid #3d69a4;
+    background-color: $background;
+    color: $primary-300;
+    border: 1px solid $primary-300;
     transition: all 0.1s linear;
 
     &:hover,
     &:focus {
-      box-shadow: 0px 2px 12px #21395a;
+      box-shadow: 0px 2px 12px $primary-600;
     }
 
     &.-active {
-      border-color: #21395a;
-      background-color: #3d69a4;
-      color: #fff;
+      border-color: $primary-600;
+      background-color: $primary-300;
+      color: $background;
     }
   }
 
