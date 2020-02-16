@@ -97,36 +97,6 @@ export default class PokemonCardContainer extends Vue {
 </script>
 
 <style scoped lang="scss">
-
-.pokemon-image {
-  display: none;
-
-  @media screen and (min-width: 1024px) {
-    display: unset;
-    position: absolute;
-    height: 120px;
-    top: 68px;
-    left: 80px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    left: 120px;
-  }
-
-  @media screen and (min-width: 1920px) {
-    left: 160px;
-  }
-}
-
-.pokemon-types {
-  display: flex;
-  justify-content: center;
-
-  & > .type + .type {
-    margin-left: 20px;
-  }
-}
-
 .tabs {
   display: flex;
   justify-content: center;
@@ -159,22 +129,6 @@ export default class PokemonCardContainer extends Vue {
 
   & > .tab + .tab {
     margin-left: 20px;
-  }
-}
-
-.type-detail {
-  padding: 32px 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #C4C4C4;
   }
 }
 </style>

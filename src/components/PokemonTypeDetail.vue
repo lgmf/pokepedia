@@ -48,7 +48,7 @@ export default class PokeTypeDetail extends Vue {
   }
 
   & > .badges {
-    flex: 4;
+    flex: 2;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 24px;
@@ -65,10 +65,10 @@ export default class PokeTypeDetail extends Vue {
 
     @media screen and (min-width: 1360px) {
       flex: 8;
-      grid-template-columns: repeat(8, 1fr);
+      grid-template-columns: repeat(6, 1fr);
     }
 
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1920px) {
       flex: 10;
       grid-template-columns: repeat(10, 1fr);
     }

@@ -7,7 +7,6 @@
       </nav>
     </header>
     <main class="content">
-      <h1 class="pagetitle">{{ routeName }}</h1>
       <router-view />
     </main>
   </div>
@@ -31,17 +30,17 @@ export default class App extends Vue {
   max-width: 1920px;
   margin: 0 auto;
   display: grid;
-  row-gap: 40px;
+  row-gap: 20px;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
 
-  @media screen and (min-width: 768px) {
-    row-gap: 20px;
-  }
-
   & > .header,
   & > .content {
-    padding: 0 25px;
+    padding: 0 12px;
+
+    @media screen and (min-width: 425px) {
+      padding: 0 32px;
+    }
 
     @media screen and (min-width: 768px) {
       padding: 0 75px;
