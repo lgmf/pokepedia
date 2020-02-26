@@ -9,7 +9,8 @@ $breakpoints: (
 );
 
 @mixin respond-to($breakpoint) {
-  $width: map-get($map: $breakpoints, $key: $breakpoint );
+  $width: map-get($map: $breakpoints, $key: $breakpoint);
+
   @media screen and (min-width: $width) {
     @content;
   }

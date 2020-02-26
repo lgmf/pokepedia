@@ -1,12 +1,12 @@
+const StyleLintPlugin = require("stylelint-webpack-plugin");
+
 module.exports = {
-  publicPath: '/',
-  css: {
-    loaderOptions: {
-      sass: {
-        data: `
-          @import "@/styles/main.scss";
-        `,
-      },
-    },
-  },
+  publicPath: "/",
+  configureWebpack: {
+    plugins: [
+      new StyleLintPlugin({
+        files: ["src/**/*.{vue,scss}"]
+      })
+    ]
+  }
 };

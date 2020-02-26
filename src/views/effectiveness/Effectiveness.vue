@@ -1,5 +1,5 @@
 <template>
-  <div class="effectiveness">
+  <div class="effectiveness-page">
     <div class="filters">
       <input-autocomplete
         label="pokemon name"
@@ -21,29 +21,27 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component } from "vue-property-decorator";
 
-import {
-  State, Action, Getter, namespace,
-} from 'vuex-class';
+import { State, Action, Getter, namespace } from "vuex-class";
 
-import { EffectivenessState } from '@/store/effectiveness/models/effectiveness.state';
-import { Mutations } from '@/store/effectiveness/mutations';
+import { EffectivenessState } from "@/store/effectiveness/models/effectiveness.state";
+import { Mutations } from "@/store/effectiveness/mutations";
 
-import { Pokemon } from '@/core/models';
+import { Pokemon } from "@/core/models";
 
-import InputAutoComplete from '@/components/InputAutoComplete.vue';
+import InputAutoComplete from "@/components/InputAutoComplete.vue";
 
-import PokemonCardContainer from './components/PokemonCardContainer.vue';
-import damageLabel from './filters/DamageLabel';
+import PokemonCardContainer from "./components/PokemonCardContainer.vue";
+import damageLabel from "./filters/DamageLabel";
 
-const effectivenessStore = namespace('effectiveness');
+const effectivenessStore = namespace("effectiveness");
 
 @Component({
   components: {
-    'input-autocomplete': InputAutoComplete,
-    'pokemon-card-container': PokemonCardContainer,
-  },
+    "input-autocomplete": InputAutoComplete,
+    "pokemon-card-container": PokemonCardContainer
+  }
 })
 export default class Effectiveness extends Vue {
   @effectivenessStore.State((state: EffectivenessState) => state.ui.loading)
@@ -53,7 +51,7 @@ export default class Effectiveness extends Vue {
   error!: boolean;
 
   @effectivenessStore.State(
-    (state: EffectivenessState) => state.ui.errorMessage,
+    (state: EffectivenessState) => state.ui.errorMessage
   )
   errorMessage!: string;
 
@@ -61,7 +59,7 @@ export default class Effectiveness extends Vue {
   search!: string;
 
   @effectivenessStore.State(
-    (state: EffectivenessState) => state.ui.loadingSuggestions,
+    (state: EffectivenessState) => state.ui.loadingSuggestions
   )
   loadingSuggestions!: boolean;
 
@@ -90,24 +88,3 @@ export default class Effectiveness extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.effectiveness {
-  width: 100%;
-  display: grid;
-  row-gap: baseline(6);
-
-  @include respond-to('md') {
-    row-gap: baseline(10);
-  }
-
-  & > .filters {
-    display: flex;
-  }
-
-  & > .loading {
-    justify-self: center;
-    align-self: center;
-  }
-}
-</style>

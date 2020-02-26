@@ -1,9 +1,9 @@
-import { RootState } from '@/root.state';
-import { Module } from 'vuex';
-import { actions } from './actions';
-import { getters } from './getters';
-import { EffectivenessState, createInitialState } from './models/effectiveness.state';
-import { mutations } from './mutations';
+import { RootState } from "@/root.state";
+import { Module } from "vuex";
+import { actions } from "./actions";
+import { getters } from "./getters";
+import { EffectivenessState, createInitialState } from "./models/effectiveness.state";
+import { mutations } from "./mutations";
 
 const namespaced = true;
 
@@ -14,7 +14,7 @@ export const effectivenessStore: Module<EffectivenessState, RootState> = {
   state,
   mutations,
   actions,
-  getters,
+  getters
 };
 
 export default effectivenessStore;

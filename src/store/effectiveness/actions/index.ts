@@ -1,9 +1,9 @@
-import pokepediaFacadeService from '@/core/api/PokepediaFacadeService';
-import { Pokemon } from '@/core/models';
-import { RootState } from '@/root.state';
-import { Action, ActionTree } from 'vuex';
-import { EffectivenessState } from '../models/effectiveness.state';
-import { Mutations } from '../mutations';
+import pokepediaFacadeService from "@/core/api/PokepediaFacadeService";
+import { Pokemon } from "@/core/models";
+import { RootState } from "@/root.state";
+import { Action, ActionTree } from "vuex";
+import { EffectivenessState } from "../models/effectiveness.state";
+import { Mutations } from "../mutations";
 
 const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, payload: string) => {
   commit(Mutations.SET_LOADING, true);
@@ -12,10 +12,10 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
     const url = `pokemon?name=${payload.toLowerCase()}`;
     const pokemon = await pokepediaFacadeService.get<Pokemon>(url);
     commit(Mutations.SET_POKEMON, pokemon);
-    commit(Mutations.SET_ERROR, { error: false, errorMessage: '' });
+    commit(Mutations.SET_ERROR, { error: false, errorMessage: "" });
   } catch (error) {
     commit(Mutations.SET_POKEMON, null);
-    commit(Mutations.SET_ERROR, { error: true, errorMessage: 'Pokemon not found' });
+    commit(Mutations.SET_ERROR, { error: true, errorMessage: "Pokemon not found" });
   } finally {
     commit(Mutations.SET_LOADING, false);
   }
@@ -39,7 +39,7 @@ const fetchPokemonSuggestions: Action<EffectivenessState, RootState> = async ({ 
 
 export const actions: ActionTree<EffectivenessState, RootState> = {
   fetchPokemon,
-  fetchPokemonSuggestions,
+  fetchPokemonSuggestions
 };
 
 export default actions;

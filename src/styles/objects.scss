@@ -44,3 +44,38 @@
     border-bottom: 1px solid $background-400;
   }
 }
+
+.effectiveness-tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: baseline(3);
+
+  & > .tab {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: baseline(3) baseline(4);
+    cursor: pointer;
+    outline: none;
+    font-weight: 900;
+    border-radius: baseline(5);
+    background-color: $background;
+    color: $primary-300;
+    border: 1px solid $primary-300;
+    transition: box-shadow 0.1s linear;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 2px 12px $primary-600;
+    }
+
+    &.-active {
+      border-color: $primary-600;
+      background-color: $primary-300;
+      color: $background;
+    }
+  }
+
+  & > .tab + .tab {
+    margin-left: baseline(5);
+  }
+}

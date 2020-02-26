@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
-import { Pokemon } from '@/core/models/Pokemon';
-import { Mutation, MutationTree } from 'vuex';
-import { EffectivenessState } from '../models/effectiveness.state';
+import { Pokemon } from "@/core/models/Pokemon";
+import { Mutation, MutationTree } from "vuex";
+import { EffectivenessState } from "../models/effectiveness.state";
 
 const setLoading: Mutation<EffectivenessState> = (state, payload: boolean) => {
   state.ui.loading = payload;
@@ -12,7 +12,7 @@ const setError: Mutation<EffectivenessState> = (state: EffectivenessState, paylo
   state.ui.errorMessage = payload.errorMessage;
 };
 
-const setViewMode: Mutation<EffectivenessState> = (state, payload: 'atk' | 'def') => {
+const setViewMode: Mutation<EffectivenessState> = (state, payload: "atk" | "def") => {
   state.ui.viewMode = payload;
 };
 
@@ -33,13 +33,13 @@ const setPokemonSuggestions: Mutation<EffectivenessState> = (state, payload: str
 };
 
 export enum Mutations {
-  SET_LOADING = 'SET_LOADING',
-  SET_ERROR = 'SET_ERROR',
-  SET_VIEW_MODE = 'SET_VIEW_MODE',
-  SET_SEARCH = 'SET_SEARCH',
-  SET_LOADING_SUGGESTIONS = 'SET_LOADING_SUGGESTIONS',
-  SET_POKEMON = 'SET_POKEMON',
-  SET_POKEMON_SUGGESTIONS = 'SET_POKEMON_SUGGESTIONS'
+  SET_LOADING = "SET_LOADING",
+  SET_ERROR = "SET_ERROR",
+  SET_VIEW_MODE = "SET_VIEW_MODE",
+  SET_SEARCH = "SET_SEARCH",
+  SET_LOADING_SUGGESTIONS = "SET_LOADING_SUGGESTIONS",
+  SET_POKEMON = "SET_POKEMON",
+  SET_POKEMON_SUGGESTIONS = "SET_POKEMON_SUGGESTIONS"
 }
 
 export const mutations: MutationTree<EffectivenessState> = {
@@ -49,5 +49,5 @@ export const mutations: MutationTree<EffectivenessState> = {
   [Mutations.SET_SEARCH]: setSearch,
   [Mutations.SET_LOADING_SUGGESTIONS]: setLoadingSuggestions,
   [Mutations.SET_POKEMON]: setPokemon,
-  [Mutations.SET_POKEMON_SUGGESTIONS]: setPokemonSuggestions,
+  [Mutations.SET_POKEMON_SUGGESTIONS]: setPokemonSuggestions
 };
