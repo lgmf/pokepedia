@@ -1,0 +1,11 @@
+.v-select {
+  background: transparent;
+
+  & > .option {
+    padding: baseline(2);
+
+    &.-placeholder {
+      color: $background-600;
+    }
+  }
+}

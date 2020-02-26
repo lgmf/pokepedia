@@ -1,14 +1,6 @@
 <template>
-  <select
-    class="v-select input-flex"
-    v-model="value"
-  >
-    <option
-      class="option -placeholder"
-      value
-      disabled
-      selected
-    >Choose an option</option>
+  <select class="v-select input-flex" v-model="value">
+    <option class="option -placeholder" value disabled selected>Choose an option</option>
     <option
       class="option"
       v-for="option in options"
@@ -19,23 +11,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator';
-import { Option } from '@/core/models';
+import Vue from "vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
+import { Option } from "@/core/models";
 
 @Component({
-  name: 'v-select',
+  name: "v-select"
 })
 export default class VSelect extends Vue {
   @Prop()
   options!: Option[];
 
-  private value: string = '';
+  private value: string = "";
 
-  @Watch('value')
+  @Watch("value")
   onValueChanged(value: string, oldValue: string) {
     const option = this.getOptionByValue(value);
-    this.$emit('optionSelected', option);
+    this.$emit("optionSelected", option);
   }
 
   private getOptionByValue(value: string) {
@@ -43,17 +35,3 @@ export default class VSelect extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.v-select {
-  background: transparent;
-
-  & > .option {
-    padding: 8px;
-
-    &.-placeholder {
-      color: $background-600;
-    }
-  }
-}
-</style>

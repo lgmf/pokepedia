@@ -92,7 +92,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-size: inherit;
   vertical-align: baseline;
 }
 
@@ -128,16 +128,16 @@ q {
 }
 
 blockquote {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
     content: none;
   }
 }
 
 q {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
     content: none;
   }

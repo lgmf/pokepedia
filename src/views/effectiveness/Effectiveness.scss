@@ -1,0 +1,18 @@
+.effectiveness-page {
+  width: 100%;
+  display: grid;
+  row-gap: baseline(6);
+
+  @include respond-to("md") {
+    row-gap: baseline(10);
+  }
+
+  & > .filters {
+    display: flex;
+  }
+
+  & > .loading {
+    justify-self: center;
+    align-self: center;
+  }
+}

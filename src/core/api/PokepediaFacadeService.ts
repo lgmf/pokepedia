@@ -1,4 +1,4 @@
-import { env } from '@/environment';
+import { env } from "@/environment";
 
 class PokepediaFacadeService {
   get<T>(path: string): Promise<T> {

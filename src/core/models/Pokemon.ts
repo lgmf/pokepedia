@@ -31,11 +31,11 @@ export interface Pokemon {
 
 export const initialState: Pokemon = {
   id: -1,
-  name: '',
+  name: "",
   height: -1,
   weight: -1,
-  sprite: '',
-  image: '',
+  sprite: "",
+  image: "",
   typeSlots: [],
   attackEffectiveness: {
     quad: [],
@@ -43,7 +43,7 @@ export const initialState: Pokemon = {
     regular: [],
     half: [],
     quarter: [],
-    zero: [],
+    zero: []
   },
   defenseEffectiveness: {
     quad: [],
@@ -51,6 +51,6 @@ export const initialState: Pokemon = {
     regular: [],
     half: [],
     quarter: [],
-    zero: [],
-  },
+    zero: []
+  }
 };

@@ -1,8 +1,8 @@
-import { Pokemon } from '@/core/models';
-import { BaseState } from '@/store/base.state';
+import { Pokemon } from "@/core/models";
+import { BaseState } from "@/store/base.state";
 
 interface UI extends BaseState {
-  viewMode: 'atk' | 'def';
+  viewMode: "atk" | "def";
   search: string;
   loadingSuggestions: boolean;
 }
@@ -18,12 +18,12 @@ export function createInitialState(): EffectivenessState {
     ui: {
       loading: false,
       error: false,
-      errorMessage: '',
-      viewMode: 'def',
-      search: '',
-      loadingSuggestions: false,
+      errorMessage: "",
+      viewMode: "def",
+      search: "",
+      loadingSuggestions: false
     },
     pokemon: null,
-    pokemonSuggestions: [],
+    pokemonSuggestions: []
   };
 }

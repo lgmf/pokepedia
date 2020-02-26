@@ -1,5 +1,5 @@
 <template>
-  <div class="inputautocomplete">
+  <div class="input-autocomplete">
     <label for="search" class="label">{{ label }}</label>
 
     <input
@@ -20,21 +20,15 @@
     <span v-show="loading" class="icon -loading"></span>
 
     <datalist id="suggestions">
-      <option
-        v-for="s in suggestions"
-        :key="s"
-        :value="s"
-      >{{s}}</option>
+      <option v-for="s in suggestions" :key="s" :value="s">{{s}}</option>
     </datalist>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  Vue, Component, Prop, Emit,
-} from 'vue-property-decorator';
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
-import Debounce from '@/core/decorators/Debounce';
+import Debounce from "@/core/decorators/Debounce";
 
 @Component
 export default class InputAutoComplete extends Vue {
@@ -48,7 +42,7 @@ export default class InputAutoComplete extends Vue {
   loading!: boolean;
 
   get labelValue(): string {
-    return this.label || '';
+    return this.label || "";
   }
 
   @Debounce(500)
@@ -66,73 +60,3 @@ export default class InputAutoComplete extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.inputautocomplete {
-  $left-spacing: 8px;
-  $icon-size: 14px;
-
-  position: relative;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    width: auto;
-  }
-
-  & > .label {
-    display: block;
-    font-size: 12px;
-    color: $primary-600;
-    font-weight: bold;
-    transition: 0.35s ease-in-out;
-    text-transform: capitalize;
-    margin-bottom: 12px;
-  }
-
-  & > .input {
-    width: 100%;
-    font-size: 16px;
-    padding: $left-spacing $left-spacing * 5;
-    border: none;
-    outline: none;
-    border: 1px solid $primary-300;
-    border-radius: 8px;
-    transition: box-shadow 0.35s ease;
-    color: $primary-600;
-
-    &:hover {
-      border-color: $primary-600;
-    }
-
-    &:focus {
-      box-shadow: 0px 2px 8px $primary-600;
-    }
-
-    &::-webkit-calendar-picker-indicator {
-      display: none;
-    }
-  }
-
-  & > .icon {
-    width: $icon-size;
-    height: $icon-size;
-    position: absolute;
-    left: calc(100% - #{$icon-size} - #{$left-spacing * 2});
-    bottom: 10px;
-    background-repeat: no-repeat;
-
-    &.-loading {
-      background-image: url("../assets/spinner-solid.svg");
-      animation: spinner;
-      animation-duration: 0.75s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-
-    &.-search {
-      background-image: url("../assets/search-solid.svg");
-      left: $left-spacing * 2;
-    }
-  }
-}
-</style>

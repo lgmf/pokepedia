@@ -1,28 +1,28 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from "vue";
+import Router from "vue-router";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/effectiveness',
-      name: 'pokemon effectiveness',
-      component: () => import('./views/effectiveness/Effectiveness.vue'),
+      path: "/effectiveness",
+      name: "pokemon effectiveness",
+      component: () => import("./views/effectiveness/Effectiveness.vue")
     },
     {
-      path: '/',
-      redirect: '/effectiveness',
+      path: "/",
+      redirect: "/effectiveness"
     },
     {
-      path: '',
-      redirect: '/effectiveness',
+      path: "",
+      redirect: "/effectiveness"
     },
     {
-      path: '**',
-      redirect: '/effectiveness',
-    },
-  ],
+      path: "**",
+      redirect: "/effectiveness"
+    }
+  ]
 });
