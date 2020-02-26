@@ -1,31 +1,7 @@
-.type-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: -8px;
-
-  & > .type {
-    flex: 0 0 calc(33% - 8px);
-    margin-top: 8px;
-    margin-right: 8px;
-  }
-
-  @media screen and (min-width: 768px) {
-    & > .type {
-      flex-basis: calc(20% - 8px);
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    & > .type {
-      flex-basis: calc(10% - 8px);
-    }
-  }
-}
-
 .pokemon-image {
   display: none;
 
-  @media screen and (min-width: 1024px) {
+  @include respond-to('md') {
     display: unset;
     position: absolute;
     height: 120px;
@@ -33,16 +9,12 @@
     left: 80px;
   }
 
-  @media screen and (min-width: 1360px) {
+  @include respond-to('lg') {
     height: 160px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    height: 180px;
     left: 120px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @include respond-to('xlg') {
     height: 200px;
     left: 160px;
   }
@@ -53,12 +25,12 @@
   justify-content: center;
 
   & > .type + .type {
-    margin-left: 20px;
+    margin-left: baseline(5);
   }
 }
 
 .type-detail {
-  padding: 32px 0;
+  padding: baseline(8) 0;
 
   &:first-child {
     padding-top: 0;

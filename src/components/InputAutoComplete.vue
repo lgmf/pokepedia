@@ -20,11 +20,7 @@
     <span v-show="loading" class="icon -loading"></span>
 
     <datalist id="suggestions">
-      <option
-        v-for="s in suggestions"
-        :key="s"
-        :value="s"
-      >{{s}}</option>
+      <option v-for="s in suggestions" :key="s" :value="s">{{s}}</option>
     </datalist>
   </div>
 </template>
@@ -69,13 +65,13 @@ export default class InputAutoComplete extends Vue {
 
 <style scoped lang="scss">
 .inputautocomplete {
-  $left-spacing: 8px;
+  $left-spacing: baseline(2);
   $icon-size: 14px;
 
   position: relative;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  @include respond-to('sm') {
     width: auto;
   }
 
@@ -86,7 +82,7 @@ export default class InputAutoComplete extends Vue {
     font-weight: bold;
     transition: 0.35s ease-in-out;
     text-transform: capitalize;
-    margin-bottom: 12px;
+    margin-bottom: baseline(3);
   }
 
   & > .input {
@@ -96,7 +92,7 @@ export default class InputAutoComplete extends Vue {
     border: none;
     outline: none;
     border: 1px solid $primary-300;
-    border-radius: 8px;
+    border-radius: baseline(2);
     transition: box-shadow 0.35s ease;
     color: $primary-600;
 

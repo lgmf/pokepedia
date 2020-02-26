@@ -2,7 +2,7 @@
   <div class="effectiveness">
     <div class="filters">
       <input-autocomplete
-         label="pokemon name"
+        label="pokemon name"
         :suggestions="pokemonSuggestions"
         :loading="loadingSuggestions"
         @on-type="fetchPokemonSuggestions($event)"
@@ -52,13 +52,17 @@ export default class Effectiveness extends Vue {
   @effectivenessStore.State((state: EffectivenessState) => state.ui.error)
   error!: boolean;
 
-  @effectivenessStore.State((state: EffectivenessState) => state.ui.errorMessage)
+  @effectivenessStore.State(
+    (state: EffectivenessState) => state.ui.errorMessage,
+  )
   errorMessage!: string;
 
   @effectivenessStore.State((state: EffectivenessState) => state.ui.search)
   search!: string;
 
-  @effectivenessStore.State((state: EffectivenessState) => state.ui.loadingSuggestions)
+  @effectivenessStore.State(
+    (state: EffectivenessState) => state.ui.loadingSuggestions,
+  )
   loadingSuggestions!: boolean;
 
   @effectivenessStore.State
@@ -89,8 +93,13 @@ export default class Effectiveness extends Vue {
 
 <style scoped lang="scss">
 .effectiveness {
+  width: 100%;
   display: grid;
-  grid-gap: 44px;
+  row-gap: baseline(6);
+
+  @include respond-to('md') {
+    row-gap: baseline(10);
+  }
 
   & > .filters {
     display: flex;

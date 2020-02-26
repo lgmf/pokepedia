@@ -100,20 +100,20 @@ export default class PokemonCardContainer extends Vue {
 .tabs {
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: baseline(3);
 
   & > .tab {
     font-size: 16px;
     text-transform: uppercase;
-    padding: 12px 16px;
+    padding: baseline(3) baseline(4);
     cursor: pointer;
     outline: none;
     font-weight: 900;
-    border-radius: 20px;
+    border-radius: baseline(5);
     background-color: $background;
     color: $primary-300;
     border: 1px solid $primary-300;
-    transition: all 0.1s linear;
+    transition: box-shadow 0.1s linear;
 
     &:hover,
     &:focus {
@@ -128,7 +128,7 @@ export default class PokemonCardContainer extends Vue {
   }
 
   & > .tab + .tab {
-    margin-left: 20px;
+    margin-left: baseline(5);
   }
 }
 </style>

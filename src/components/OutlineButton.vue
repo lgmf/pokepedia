@@ -31,10 +31,10 @@ export default class OutlineButton extends Vue {
 .outline-button {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: baseline(2) baseline(3);
   cursor: pointer;
   border: 2px solid #59a295;
-  border-radius: 8px;
+  border-radius: baseline(2);
   transition: background 0.35s ease-in-out;
   outline: none;
   text-transform: uppercase;

@@ -3,10 +3,7 @@
     <h5 class="title">{{ title }}</h5>
     <ul class="badges">
       <li v-if="!data.length">-</li>
-      <poke-type-badge
-        v-for="item in data"
-        :key="item"
-        :type="item"></poke-type-badge>
+      <poke-type-badge v-for="item in data" :key="item" :type="item"></poke-type-badge>
     </ul>
   </div>
 </template>
@@ -40,37 +37,34 @@ export default class PokeTypeDetail extends Vue {
     flex: 1;
     font-size: 18px;
     font-weight: bolder;
-    line-height: 20px;
-
-    @media screen and (min-width: 1024px) {
-      margin-right: 32px;
-    }
+    line-height: baseline(5);
   }
 
   & > .badges {
-    flex: 2;
+    flex: 3;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 24px;
-    column-gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 80px));
+    row-gap: baseline(5);
+    column-gap: baseline(2);
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
+    @include respond-to('xs') {
+      flex: 5;
     }
 
-    @media screen and (min-width: 1024px) {
+    @include respond-to('sm') {
+      column-gap: baseline(4);
+    }
+
+    @include respond-to('md') {
       flex: 6;
-      grid-template-columns: repeat(4, 1fr);
     }
 
-    @media screen and (min-width: 1360px) {
+    @include respond-to('lg') {
       flex: 8;
-      grid-template-columns: repeat(6, 1fr);
     }
 
-    @media screen and (min-width: 1920px) {
+    @include respond-to('xl') {
       flex: 10;
-      grid-template-columns: repeat(10, 1fr);
     }
   }
 }

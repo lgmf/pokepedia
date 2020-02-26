@@ -25,36 +25,32 @@ export default class VCard extends Vue {
 <style scoped lang="scss">
 .v-card {
   display: grid;
-  grid-row-gap: 60px;
+  row-gap: baseline(15);
   position: relative;
   background: $background;
-  padding: 40px 12px;
-  border-radius: 40px;
+  padding: baseline(10) baseline(6);
+  border-radius: baseline(10);
   box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.25);
 
-  @media screen and (min-width: 425px) {
-    padding: 40px 20px;
+  @include respond-to('sm') {
+    padding: baseline(10) baseline(15);
   }
 
-  @media screen and (min-width: 768px) {
-    padding: 40px 60px;
+  @include respond-to('md') {
+    padding: baseline(17) baseline(20);
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 68px 80px;
+  @include respond-to('lg') {
+    padding: baseline(17) baseline(30);
   }
 
-  @media screen and (min-width: 1440px) {
-    padding: 68px 120px;
-  }
-
-  @media screen and (min-width: 1920px) {
-    padding: 68px 160px;
+  @include respond-to('xlg') {
+    padding: baseline(17) baseline(40);
   }
 
   & > .header {
     display: grid;
-    grid-row-gap: 24px;
+    row-gap: baseline(6);
     background-color: $background;
 
     & > .title {
