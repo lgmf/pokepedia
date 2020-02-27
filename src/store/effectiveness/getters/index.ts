@@ -15,11 +15,7 @@ const defKeys: Getter<EffectivenessState, RootState> = getKeyByViewMode("def");
 
 const atkKeys: Getter<EffectivenessState, RootState> = getKeyByViewMode("atk");
 
-// eslint-disable-next-line max-len
-const pokemonTitle: Getter<EffectivenessState, RootState> = (state: EffectivenessState) => (state.pokemon ? `#${state.pokemon.id} - ${state.pokemon.name}` : "");
-
 export const getters: GetterTree<EffectivenessState, RootState> = {
-  pokemonTitle,
   defKeys,
   atkKeys
 };

@@ -12,7 +12,9 @@ export default (value: keyof TypeEffectiveness) => {
       return "½×";
     case "quarter":
       return "¼×";
+    case "zero":
+      return "0×";
     default:
-      return "0x";
+      throw new Error(`option ${value} for damage label filter not found`);
   }
 };

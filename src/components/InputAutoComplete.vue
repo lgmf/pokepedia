@@ -41,10 +41,6 @@ export default class InputAutoComplete extends Vue {
   @Prop()
   loading!: boolean;
 
-  get labelValue(): string {
-    return this.label || "";
-  }
-
   @Debounce(500)
   @Emit()
   onType(event: Event) {
