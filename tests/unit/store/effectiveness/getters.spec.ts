@@ -4,18 +4,6 @@ import mockPokemon from "../../mocks/pokemon.mock";
 const Getters = getters as any;
 
 describe("effectiveness/getters", () => {
-  describe("#pokemonTitle", () => {
-    it("happy path", () => {
-      const state = { pokemon: mockPokemon };
-      expect(Getters.pokemonTitle(state)).toEqual("#25 - pikachu");
-    });
-
-    it("handle when there is no pokemon", () => {
-      const state = { pokemon: null };
-      expect(Getters.pokemonTitle(state)).toEqual("");
-    });
-  });
-
   describe("#defKeys", () => {
     it("happy path", () => {
       const state = { pokemon: mockPokemon };
