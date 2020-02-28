@@ -12,9 +12,23 @@
 
     <v-loader v-if="loading"></v-loader>
 
-    <pokemon-not-found v-else-if="error" :title="errorTitle" :message="errorMessage"></pokemon-not-found>
+    <info-message
+      v-else-if="error"
+      :title="errorTitle"
+      :message="errorMessage"
+      imageSrc="/img/confused-psyduck.png"
+      imageAlternateText="confused psyduck"
+    ></info-message>
 
-    <pokemon-card-container v-else :pokemon="pokemon"></pokemon-card-container>
+    <pokemon-card-container v-else-if="pokemon" :pokemon="pokemon"></pokemon-card-container>
+
+    <info-message
+      v-else
+      title="Waiting for your search!"
+      message="Search for pokémon’s effectiveness by entering its name above"
+      imageSrc="/img/sleeping-snorlax.png"
+      imageAlternateText="sleeping snorlax"
+    ></info-message>
   </div>
 </template>
 
@@ -36,10 +50,10 @@ const effectivenessStore = namespace("effectiveness");
   components: {
     "input-autocomplete": InputAutoComplete,
     "v-loader": () => import("@/components/VLoader.vue"),
+    "info-message": () => import("@/components/InfoMessage.vue"),
     "pokemon-card-container": () =>
       // eslint-disable-next-line implicit-arrow-linebreak
-      import("./components/PokemonCardContainer.vue"),
-    "pokemon-not-found": () => import("./components/PokemonNotFound.vue")
+      import("./components/PokemonCardContainer.vue")
   }
 })
 export default class Effectiveness extends Vue {

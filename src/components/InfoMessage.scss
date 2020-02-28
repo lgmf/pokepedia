@@ -1,6 +1,5 @@
-.pokemon-not-found {
+.info-message {
   display: grid;
-  row-gap: baseline(5);
   padding: baseline(10) baseline(5);
   border-radius: baseline(10);
   text-align: center;
@@ -16,12 +15,14 @@
     margin: 0 auto;
     filter: blur(8px);
     transition: filter 0.5s ease-in;
+    margin-bottom: baseline(10);
 
     @include respond-to('sm') {
       width: 180px;
       height: 180px;
     }
 
+    &.-error,
     &.-loaded {
       filter: none;
     }
@@ -31,6 +32,7 @@
     font-size: 1.5em;
     color: $primary-600;
     font-weight: bold;
+    margin-bottom: baseline(5);
 
     @include respond-to('lg') {
       font-size: 2em;
@@ -38,11 +40,11 @@
   }
 
   & > .message {
-    font-size: 0.75em;
+    font-size: 0.8em;
     color: $background-600;
 
     @include respond-to('lg') {
-      font-size: 0.85em;
+      font-size: 1em;
     }
   }
 }
