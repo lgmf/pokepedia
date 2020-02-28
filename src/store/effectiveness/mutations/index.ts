@@ -3,12 +3,19 @@ import { Pokemon } from "@/core/models/Pokemon";
 import { Mutation, MutationTree } from "vuex";
 import { EffectivenessState } from "../models/effectiveness.state";
 
+interface SetErrorPayload {
+  error: boolean;
+  errorTitle: string;
+  errorMessage: string;
+}
+
 const setLoading: Mutation<EffectivenessState> = (state, payload: boolean) => {
   state.ui.loading = payload;
 };
 
-const setError: Mutation<EffectivenessState> = (state: EffectivenessState, payload: { error: boolean, errorMessage: string }) => {
+const setError: Mutation<EffectivenessState> = (state: EffectivenessState, payload: SetErrorPayload) => {
   state.ui.error = payload.error;
+  state.ui.errorTitle = payload.errorTitle;
   state.ui.errorMessage = payload.errorMessage;
 };
 

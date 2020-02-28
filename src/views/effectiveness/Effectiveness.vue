@@ -10,13 +10,11 @@
       ></input-autocomplete>
     </div>
 
-    <span v-if="loading" class="loading">Loading...</span>
+    <v-loader v-if="loading"></v-loader>
 
-    <span v-else-if="error">{{ errorMessage }}</span>
+    <pokemon-not-found v-else-if="error" :title="errorTitle" :message="errorMessage"></pokemon-not-found>
 
-    <main v-else class="pokemon">
-      <pokemon-card-container></pokemon-card-container>
-    </main>
+    <pokemon-card-container v-else :pokemon="pokemon"></pokemon-card-container>
   </div>
 </template>
 
@@ -32,15 +30,16 @@ import { Pokemon } from "@/core/models";
 
 import InputAutoComplete from "@/components/InputAutoComplete.vue";
 
-import PokemonCardContainer from "./components/PokemonCardContainer.vue";
-import damageLabel from "./filters/DamageLabel";
-
 const effectivenessStore = namespace("effectiveness");
 
 @Component({
   components: {
     "input-autocomplete": InputAutoComplete,
-    "pokemon-card-container": PokemonCardContainer
+    "v-loader": () => import("@/components/VLoader.vue"),
+    "pokemon-card-container": () =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      import("./components/PokemonCardContainer.vue"),
+    "pokemon-not-found": () => import("./components/PokemonNotFound.vue")
   }
 })
 export default class Effectiveness extends Vue {
@@ -49,6 +48,9 @@ export default class Effectiveness extends Vue {
 
   @effectivenessStore.State((state: EffectivenessState) => state.ui.error)
   error!: boolean;
+
+  @effectivenessStore.State((state: EffectivenessState) => state.ui.errorTitle)
+  errorTitle!: string;
 
   @effectivenessStore.State(
     (state: EffectivenessState) => state.ui.errorMessage

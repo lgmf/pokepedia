@@ -12,6 +12,7 @@ describe("effectiveness/mutations", () => {
       ui: {
         loading: false,
         error: false,
+        errorTitle: "",
         errorMessage: "",
         search: "",
         viewMode: "def",

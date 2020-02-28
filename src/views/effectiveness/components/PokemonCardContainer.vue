@@ -77,7 +77,7 @@ const effectivenessStore = namespace("effectiveness");
   }
 })
 export default class PokemonCardContainer extends Vue {
-  @effectivenessStore.State
+  @Prop()
   pokemon!: Pokemon;
 
   @effectivenessStore.State((state: EffectivenessState) => state.ui.viewMode)

@@ -27,6 +27,12 @@ describe("effectiveness/actions", () => {
     });
 
     it("handle pokemon not found", async () => {
+      const errorPayload = {
+        error: true,
+        errorMessage: "We couldn't find any pokemon matching \"pikachu\"",
+        errorTitle: "Pokemon not found"
+      };
+
       pokepediaFacadeService.get = jest.fn().mockImplementation(() => {
         throw new Error("");
       });
@@ -35,7 +41,7 @@ describe("effectiveness/actions", () => {
 
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, true);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_POKEMON, null);
-      expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_ERROR, { error: true, errorMessage: "Pokemon not found" });
+      expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_ERROR, errorPayload);
       expect(mockCommit).toHaveBeenCalledWith(Mutations.SET_LOADING, false);
     });
   });
