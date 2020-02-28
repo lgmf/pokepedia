@@ -29,8 +29,8 @@ describe("effectiveness/actions", () => {
     it("handle pokemon not found", async () => {
       const errorPayload = {
         error: true,
-        errorMessage: "We couldn't find any pokemon matching \"pikachu\"",
-        errorTitle: "Pokemon not found"
+        errorTitle: "We've got confused!",
+        errorMessage: "We couldn't find any pokemon matching \"pikachu\""
       };
 
       pokepediaFacadeService.get = jest.fn().mockImplementation(() => {
