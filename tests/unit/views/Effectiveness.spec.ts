@@ -1,5 +1,5 @@
 import { createLocalVue, Wrapper, shallowMount } from "@vue/test-utils";
-import Vuex, { MutationTree, ActionTree, GetterTree, Store, Module } from "vuex";
+import Vuex, { MutationTree, ActionTree, Store, Module } from "vuex";
 
 import { EffectivenessState, createInitialState } from "@/store/effectiveness/models/effectiveness.state";
 import { RootState } from "@/root.state";

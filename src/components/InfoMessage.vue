@@ -1,9 +1,10 @@
 <template>
-  <div class="pokemon-not-found">
+  <div class="info-message">
     <img
       class="image"
-      src="@/assets/confused-psyduck.png"
-      alt="sad pikachu"
+      :src="imageSrc"
+      :alt="imageAlternateText"
+      @error="$event.target.classList.add('-error')"
       @load="$event.target.classList.add('-loaded')"
     />
     <h3 class="title">{{ title }}</h3>
@@ -22,5 +23,11 @@ export default class PokemonNotFound extends Vue {
 
   @Prop()
   message!: string;
+
+  @Prop()
+  imageSrc!: string;
+
+  @Prop()
+  imageAlternateText!: string;
 }
 </script>
