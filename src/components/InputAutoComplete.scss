@@ -2,12 +2,8 @@
   $left-spacing: baseline(2);
   $icon-size: 14px;
 
-  position: relative;
   width: 100%;
-
-  @include respond-to('sm') {
-    width: auto;
-  }
+  position: relative;
 
   & > .label {
     display: block;
