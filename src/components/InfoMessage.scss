@@ -1,7 +1,6 @@
 .info-message {
   display: grid;
   padding: baseline(10) baseline(5);
-  border-radius: baseline(10);
   text-align: center;
 
   @include respond-to('md') {
