@@ -5,6 +5,7 @@ interface UI extends BaseState {
   viewMode: "atk" | "def";
   search: string;
   loadingSuggestions: boolean;
+  errorTitle: string;
 }
 
 export interface EffectivenessState {
@@ -18,6 +19,7 @@ export function createInitialState(): EffectivenessState {
     ui: {
       loading: false,
       error: false,
+      errorTitle: "",
       errorMessage: "",
       viewMode: "def",
       search: "",

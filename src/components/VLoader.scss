@@ -1,0 +1,23 @@
+.v-loader {
+  display: grid;
+  row-gap: baseline(2);
+  place-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  & > .icon {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+
+    &.-spinner {
+      animation: spinner 1s infinite linear;
+    }
+  }
+
+  & > .text {
+    font-size: 0.85em;
+  }
+}

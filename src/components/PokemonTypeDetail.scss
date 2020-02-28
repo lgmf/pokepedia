@@ -1,5 +1,6 @@
 .poke-type-detail {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   & > .title {
@@ -10,15 +11,11 @@
   }
 
   & > .badges {
-    flex: 3;
+    flex: 2;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20px, 80px));
     row-gap: baseline(5);
     column-gap: baseline(2);
-
-    @include respond-to('xs') {
-      flex: 5;
-    }
 
     @include respond-to('sm') {
       column-gap: baseline(4);

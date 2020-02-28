@@ -46,7 +46,7 @@ describe("PokemonCardContainer", () => {
       }
     });
 
-    pokemonCardContainerComponent = mount(PokemonCardContainer, { store, localVue });
+    pokemonCardContainerComponent = mount(PokemonCardContainer, { propsData: { pokemon: null }, store, localVue });
     // eslint-disable-next-line prefer-destructuring
     vm = pokemonCardContainerComponent.vm;
   });
@@ -63,8 +63,8 @@ describe("PokemonCardContainer", () => {
   });
 
   describe("when the pokemon exists", () => {
-    beforeAll(() => {
-      state.pokemon = mockPokemon;
+    beforeEach(() => {
+      pokemonCardContainerComponent.setProps({ pokemon: mockPokemon });
     });
 
     it("should render the pokemon card", () => {
