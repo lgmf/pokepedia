@@ -2,32 +2,33 @@
   <div class="effectiveness-page">
     <div class="filters">
       <input-autocomplete
-        label="pokemon name"
+        :label="$t('effectivenessPage.inputLabel')"
         :suggestions="pokemonSuggestions"
         :loading="loadingSuggestions"
+        :placeholder="$t('effectivenessPage.inputPlaceholder')"
         @on-type="fetchPokemonSuggestions($event)"
         @on-option-selected="onSearch($event)"
       ></input-autocomplete>
     </div>
 
-    <v-loader v-if="loading"></v-loader>
+    <v-loader v-if="loading" :text="$t('effectivenessPage.loaderText')"></v-loader>
 
     <info-message
       v-else-if="error"
-      :title="errorTitle"
-      :message="errorMessage"
+      :title="$t(errorTitle)"
+      :message="$t(errorMessage, { search })"
       imageSrc="/img/confused-psyduck.png"
-      imageAlternateText="confused psyduck"
+      :imageAlternateText="$t('effectivenessPage.errorState.alternateText')"
     ></info-message>
 
     <pokemon-card-container v-else-if="pokemon" :pokemon="pokemon"></pokemon-card-container>
 
     <info-message
       v-else
-      title="Waiting for your search!"
-      message="Search for pokémon’s effectiveness by entering its name above"
+      :title="$t('effectivenessPage.emptyState.title')"
+      :message="$t('effectivenessPage.emptyState.message')"
       imageSrc="/img/sleeping-snorlax.png"
-      imageAlternateText="sleeping snorlax"
+      :imageAlternateText="$t('effectivenessPage.emptyState.alternateText')"
     ></info-message>
   </div>
 </template>

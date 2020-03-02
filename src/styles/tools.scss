@@ -1,13 +1,3 @@
-$baseline: 4px;
-
-$breakpoints: (
-  'xs': 410px,
-  'sm': 768px,
-  'md': 1024px,
-  'lg': 1440px,
-  'xl': 1920px
-);
-
 @mixin respond-to($breakpoint) {
   $width: map-get($map: $breakpoints, $key: $breakpoint);
 

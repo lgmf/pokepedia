@@ -6,13 +6,16 @@
       alt="pokeball"
       @load="$event.target.classList.add('-spinner')"
     />
-    <span class="text">Loading...</span>
+    <span class="text">{{ text }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
-export default class VLoader extends Vue {}
+export default class VLoader extends Vue {
+  @Prop()
+  text!: string;
+}
 </script>

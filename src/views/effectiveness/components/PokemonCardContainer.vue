@@ -1,7 +1,11 @@
 <template>
   <v-card v-if="!!pokemon" class="card" :title="pokemon.name">
     <template v-slot:header>
-      <img class="pokemon-image" :src="pokemon.image" alt="pokemon image" />
+      <img
+        class="pokemon-image"
+        :src="pokemon.image"
+        :alt="$t('effectivenessPage.pokemonCardContainer.alternateText')"
+      />
 
       <div class="pokemon-types">
         <poke-type-badge
@@ -17,13 +21,13 @@
           class="tab"
           :class="{ '-active': viewMode === 'def'}"
           @click="changeViewMode('def')"
-        >takes damage</button>
+        >{{ $t('effectivenessPage.pokemonCardContainer.firstTabText') }}</button>
 
         <button
           class="tab"
           :class="{ '-active': viewMode === 'atk'}"
           @click="changeViewMode('atk')"
-        >deals damage</button>
+        >{{ $t('effectivenessPage.pokemonCardContainer.secondTabText') }}</button>
       </div>
     </template>
 

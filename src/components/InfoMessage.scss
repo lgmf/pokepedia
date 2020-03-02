@@ -28,22 +28,22 @@
   }
 
   & > .title {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: $primary-600;
     font-weight: bold;
     margin-bottom: baseline(5);
 
-    @include respond-to('lg') {
-      font-size: 2em;
+    @include respond-to('sm') {
+      font-size: 2rem;
     }
   }
 
   & > .message {
-    font-size: 0.8em;
+    font-size: 1.3rem;
     color: $background-600;
 
-    @include respond-to('lg') {
-      font-size: 1em;
+    @include respond-to('sm') {
+      font-size: 1.6rem;
     }
   }
 }
