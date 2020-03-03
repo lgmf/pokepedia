@@ -1,3 +1,14 @@
+$baseline: 4px;
+
+$breakpoints: (
+  'xs': 410px,
+  'sm': 768px,
+  'md': 1024px,
+  'lg': 1440px,
+  'xl': 1920px
+);
+
+/* Palette */
 $primary-300: #3d69a4;
 $primary-600: #21395a;
 

@@ -7,7 +7,7 @@
 
   & > .label {
     display: block;
-    font-size: 12px;
+    font-size: 1.2rem;
     color: $primary-600;
     font-weight: bold;
     transition: 0.35s ease-in-out;
@@ -17,7 +17,7 @@
 
   & > .input {
     width: 100%;
-    font-size: 16px;
+    font-size: 1.6rem;
     padding: $left-spacing $left-spacing * 5;
     outline: none;
     border: 1px solid $primary-300;

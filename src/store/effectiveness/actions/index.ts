@@ -16,8 +16,8 @@ const fetchPokemon: Action<EffectivenessState, RootState> = async ({ commit }, p
   } catch (error) {
     const errorPayload = {
       error: true,
-      errorTitle: "We've got confused!",
-      errorMessage: `We couldn't find any pokemon matching "${payload}"`
+      errorTitle: "effectivenessPage.errorState.title",
+      errorMessage: "effectivenessPage.errorState.message"
     };
     commit(Mutations.SET_POKEMON, null);
     commit(Mutations.SET_ERROR, errorPayload);

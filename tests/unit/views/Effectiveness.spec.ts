@@ -43,7 +43,7 @@ describe("Effectiveness Page", () => {
       }
     });
 
-    effectivenessComponent = shallowMount(Effectiveness, { store, localVue });
+    effectivenessComponent = shallowMount(Effectiveness, { store, localVue, mocks: { $t: jest.fn() } });
     // eslint-disable-next-line prefer-destructuring
     vm = effectivenessComponent.vm;
   });

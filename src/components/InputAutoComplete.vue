@@ -9,7 +9,7 @@
       inputmode="search"
       list="suggestions"
       autocomplete="off"
-      placeholder="search here..."
+      :placeholder="placeholder"
       @keyup="onType($event)"
       @change="onOptionSelected($event)"
       autofocus
@@ -34,6 +34,9 @@ import Debounce from "@/core/decorators/Debounce";
 export default class InputAutoComplete extends Vue {
   @Prop()
   label!: string;
+
+  @Prop()
+  placeholder!: string;
 
   @Prop()
   suggestions!: string[];

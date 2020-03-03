@@ -1,15 +1,19 @@
 import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
-import { RootState } from "./root.state";
 
+import { RootState, createInitialState } from "./root.state";
+import { actions } from "./store/actions";
+import { mutations } from "./store/mutations";
 import { effectivenessStore } from "./store/effectiveness";
 
 Vue.use(Vuex);
 
+const state = createInitialState();
+
 const store: StoreOptions<RootState> = {
-  state: {
-    version: "1.0.0"
-  },
+  state,
+  actions,
+  mutations,
   modules: {
     effectiveness: effectivenessStore
   }
