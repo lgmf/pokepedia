@@ -1,9 +1,37 @@
 import { LocaleMessages } from "vue-i18n";
 
+import { PokemonTypes } from "@/core/models/Types";
+
 const dictionary: LocaleMessages = {
+  shared: {
+    pokemonTypes: {
+      [PokemonTypes.NORMAL]: "normal",
+      [PokemonTypes.FIGHTING]: "lutador",
+      [PokemonTypes.FLYING]: "voador",
+      [PokemonTypes.POISON]: "venenoso",
+      [PokemonTypes.GROUND]: "terrestre",
+      [PokemonTypes.ROCK]: "pedra",
+      [PokemonTypes.BUG]: "inseto",
+      [PokemonTypes.GHOST]: "fantasma",
+      [PokemonTypes.STEEL]: "aço",
+      [PokemonTypes.FIRE]: "fogo",
+      [PokemonTypes.WATER]: "água",
+      [PokemonTypes.GRASS]: "planta",
+      [PokemonTypes.ELECTRIC]: "elétrico",
+      [PokemonTypes.PSYCHIC]: "psíquico",
+      [PokemonTypes.ICE]: "gelo",
+      [PokemonTypes.DRAGON]: "dragão",
+      [PokemonTypes.DARK]: "noturno",
+      [PokemonTypes.FAIRY]: "fada"
+    }
+  },
   header: {
     navbar: {
       firstNavItem: "eficácia"
+    },
+    locale: {
+      usaFlagAlternateText: "bandeira dos EUA",
+      brazilFlagAlternateText: "bandeira do Brasil"
     }
   },
   effectivenessPage: {

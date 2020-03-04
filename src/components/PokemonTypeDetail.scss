@@ -1,36 +1,24 @@
 .poke-type-detail {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   & > .title {
-    flex: 1;
-    font-size: 1.8rem;
+    flex: 0 0 26px;
+    margin-right: baseline(8);
+    font-size: 1.6rem;
     font-weight: bolder;
     line-height: baseline(5);
   }
 
   & > .badges {
-    flex: 2;
+    flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20px, 80px));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 95px));
     row-gap: baseline(5);
     column-gap: baseline(2);
 
     @include respond-to('sm') {
       column-gap: baseline(4);
-    }
-
-    @include respond-to('md') {
-      flex: 6;
-    }
-
-    @include respond-to('lg') {
-      flex: 8;
-    }
-
-    @include respond-to('xl') {
-      flex: 10;
     }
   }
 }
