@@ -1,6 +1,6 @@
 <template>
   <span class="poke-type-badge" :class="[bgColor]">
-    <span class="title">{{ type }}</span>
+    <span class="title">{{ translatedType }}</span>
   </span>
 </template>
 
@@ -16,6 +16,10 @@ export default class PokeTypeBadge extends Vue {
 
   get bgColor(): string {
     return `-${this.type}background`;
+  }
+
+  get translatedType(): string {
+    return this.$t(`shared.pokemonTypes.${this.type}`).toString();
   }
 }
 </script>

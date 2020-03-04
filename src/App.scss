@@ -2,13 +2,14 @@
   max-width: 1920px;
   margin: 0 auto;
   display: grid;
+  align-items: center;
   row-gap: baseline(5);
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
 
   & > .header,
   & > .content {
-    padding: 0 baseline(4);
+    padding: 0 baseline(2);
 
     @include respond-to('xs') {
       padding: 0 baseline(8);
@@ -28,17 +29,26 @@
   }
 
   & > .header {
+    $vertical-spacing: baseline(3);
+
     display: flex;
-    align-items: center;
     background: $primary-300;
 
-    & > .logo {
-      width: 0;
-      margin: 0;
+    & > .logo,
+    & > .locale {
+      margin: $vertical-spacing 0;
+    }
 
-      @include respond-to('md') {
-        width: auto;
-        height: 6rem;
+    & > .logo {
+      $width: 163;
+      $height: 60;
+      $aspect-ratio: $width / $height;
+
+      width: 0;
+
+      @include respond-to('sm') {
+        width: 2.5rem * $aspect-ratio;
+        height: 2.5rem;
         margin-right: baseline(3);
       }
     }
@@ -46,10 +56,11 @@
     & > .nav {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
+      padding: baseline(5) 0;
       margin-right: auto;
 
       & > .link {
-        padding: baseline(5) 0;
         font-size: 1.4rem;
         color: $background;
         text-transform: capitalize;
@@ -65,20 +76,6 @@
           cursor: default;
           font-weight: bold;
         }
-      }
-    }
-
-    & > .locale {
-      width: auto;
-      height: 2rem;
-      cursor: pointer;
-
-      &:focus {
-        box-shadow: 0 2px 8px $primary-600;
-      }
-
-      &:last-child {
-        margin-left: baseline(3);
       }
     }
   }

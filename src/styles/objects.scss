@@ -79,3 +79,28 @@
     margin-left: baseline(5);
   }
 }
+
+.button-group {
+  display: flex;
+  align-items: center;
+
+  & > .button + .button {
+    margin-left: baseline(2);
+  }
+}
+
+.button-image {
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 2px 8px $primary-600;
+  }
+
+  & > .image {
+    width: auto;
+    height: 2rem;
+  }
+}

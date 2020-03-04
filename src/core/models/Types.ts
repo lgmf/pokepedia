@@ -1,4 +1,4 @@
-export enum Type {
+export enum PokemonTypes {
   NORMAL = "normal",
   FIGHTING = "fighting",
   FLYING = "flying",
@@ -20,22 +20,22 @@ export enum Type {
 }
 
 export const Types = [
-  Type.NORMAL,
-  Type.FIGHTING,
-  Type.FLYING,
-  Type.POISON,
-  Type.GROUND,
-  Type.ROCK,
-  Type.BUG,
-  Type.GHOST,
-  Type.STEEL,
-  Type.FIRE,
-  Type.WATER,
-  Type.GRASS,
-  Type.ELECTRIC,
-  Type.PSYCHIC,
-  Type.ICE,
-  Type.DRAGON,
-  Type.DARK,
-  Type.FAIRY
+  PokemonTypes.NORMAL,
+  PokemonTypes.FIGHTING,
+  PokemonTypes.FLYING,
+  PokemonTypes.POISON,
+  PokemonTypes.GROUND,
+  PokemonTypes.ROCK,
+  PokemonTypes.BUG,
+  PokemonTypes.GHOST,
+  PokemonTypes.STEEL,
+  PokemonTypes.FIRE,
+  PokemonTypes.WATER,
+  PokemonTypes.GRASS,
+  PokemonTypes.ELECTRIC,
+  PokemonTypes.PSYCHIC,
+  PokemonTypes.ICE,
+  PokemonTypes.DRAGON,
+  PokemonTypes.DARK,
+  PokemonTypes.FAIRY
 ];

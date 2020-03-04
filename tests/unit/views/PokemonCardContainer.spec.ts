@@ -46,7 +46,7 @@ describe("PokemonCardContainer", () => {
       }
     });
 
-    const options = { propsData: { pokemon: null }, store, localVue, mocks: { $t: jest.fn() } };
+    const options = { propsData: { pokemon: null }, store, localVue, mocks: { $t: jest.fn().mockReturnValue({ toString: jest.fn() }) } };
 
     pokemonCardContainerComponent = mount(PokemonCardContainer, options);
     // eslint-disable-next-line prefer-destructuring

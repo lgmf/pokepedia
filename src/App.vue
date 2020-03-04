@@ -1,24 +1,22 @@
 <template>
   <div id="app">
     <header class="header">
-      <img class="logo" src="@/assets/logo.svg" alt="logo" />
+      <img class="logo" src="@/assets/logo.png" alt="logo" />
       <nav class="nav">
         <router-link class="link" to="/effectiveness">{{ $t("header.navbar.firstNavItem") }}</router-link>
       </nav>
-      <img
-        class="locale"
-        src="@/assets/usa.png"
-        alt="locale"
-        tabindex="0"
-        @click="changeLocale('enUS')"
-      />
-      <img
-        class="locale"
-        src="@/assets/brazil.png"
-        alt="locale"
-        tabindex="0"
-        @click="changeLocale('ptBR')"
-      />
+      <section class="button-group locale">
+        <button class="button button-image" @click="changeLocale('enUS')">
+          <img class="image" src="@/assets/usa.png" :alt="$t('header.locale.usaFlagAlternateText')" />
+        </button>
+        <button class="button button-image" @click="changeLocale('ptBR')">
+          <img
+            class="image"
+            src="@/assets/brazil.png"
+            :alt="$t('header.locale.brazilFlagAlternateText')"
+          />
+        </button>
+      </section>
     </header>
     <main class="content">
       <router-view />
@@ -34,8 +32,6 @@ import { Languages } from "./i18n";
 
 @Component
 export default class App extends Vue {
-  public langs: string[] = ["enUS", "ptBR"];
-
   @Action
   changeLocale!: Function;
 }
