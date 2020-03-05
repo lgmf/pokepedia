@@ -40,7 +40,7 @@
 
   & > .message {
     font-size: 1.3rem;
-    color: $background-600;
+    color: $background-800;
 
     @include respond-to('sm') {
       font-size: 1.6rem;
