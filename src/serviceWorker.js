@@ -1,5 +1,5 @@
 // this version must match the package.json version
-const version = "v0.37.0";
+const version = "v0.39.0";
 
 const CACHE = `static-and-network-${version}`;
 
