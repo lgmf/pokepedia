@@ -2,6 +2,9 @@ const StyleLintPlugin = require("stylelint-webpack-plugin");
 
 module.exports = {
   publicPath: "/",
+  chainWebpack: (config) => {
+    config.plugins.delete("preload");
+  },
   configureWebpack: {
     plugins: [
       new StyleLintPlugin({
@@ -10,13 +13,16 @@ module.exports = {
     ]
   },
   pwa: {
-    // configure the workbox plugin
     workboxPluginMode: "InjectManifest",
     workboxOptions: {
-      // swSrc is required in InjectManifest mode.
       swSrc: "src/serviceWorker.js"
-      // ...other Workbox options...
     },
-    themeColor: "#21395a"
+    msTileColor: "#21395a",
+    manifestOptions: {
+      name: "Pokepedia",
+      start_url: "/effectiveness",
+      theme_color: "#21395a",
+      background_color: "#21395a"
+    }
   }
 };
