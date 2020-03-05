@@ -1,19 +1,20 @@
 {
   "name": "pokepedia",
-  "version": "0.1.0",
+  "version": "0.29.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "npm run lint:code && npm run lint:style",
+    "fake-ci": "npm run lint && npm run test:unit && npm run build",
     "lint:code": "vue-cli-service lint",
     "lint:style": "stylelint ./src/**/*.{vue,scss} --fix",
-    "lint": "npm run lint:code && npm run lint:style",
-    "test:unit": "vue-cli-service test:unit",
-    "test:coverage": "vue-cli-service test:unit --coverage",
-    "fake-ci": "npm run lint && npm run test:unit && npm run build"
+    "test:coverage": "vue-cli-service test:unit --coverage"
   },
   "dependencies": {
     "core-js": "2.6.5",
+    "register-service-worker": "^1.6.2",
     "vue": "2.6.10",
     "vue-class-component": "7.0.2",
     "vue-i18n": "8.15.4",
@@ -26,6 +27,7 @@
     "@types/jest": "23.1.4",
     "@vue/cli-plugin-babel": "3.8.0",
     "@vue/cli-plugin-eslint": "3.8.0",
+    "@vue/cli-plugin-pwa": "^4.2.3",
     "@vue/cli-plugin-typescript": "3.8.0",
     "@vue/cli-plugin-unit-jest": "4.2.3",
     "@vue/cli-service": "4.2.3",
