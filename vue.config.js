@@ -18,11 +18,11 @@ module.exports = {
       swSrc: "src/serviceWorker.js"
     },
     msTileColor: "#21395a",
+    name: "Pokepedia",
     manifestOptions: {
-      name: "Pokepedia",
       start_url: "/effectiveness",
-      theme_color: "#21395a",
       background_color: "#21395a"
-    }
+    },
+    themeColor: "#21395a"
   }
 };
