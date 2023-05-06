@@ -25,12 +25,12 @@
   },
   "devDependencies": {
     "@types/jest": "23.1.4",
-    "@vue/cli-plugin-babel": "3.8.0",
+    "@vue/cli-plugin-babel": "5.0.8",
     "@vue/cli-plugin-eslint": "3.8.0",
     "@vue/cli-plugin-pwa": "^4.2.3",
     "@vue/cli-plugin-typescript": "3.8.0",
-    "@vue/cli-plugin-unit-jest": "4.2.3",
-    "@vue/cli-service": "4.2.3",
+    "@vue/cli-plugin-unit-jest": "5.0.8",
+    "@vue/cli-service": "5.0.8",
     "@vue/eslint-config-airbnb": "4.0.0",
     "@vue/eslint-config-typescript": "4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
@@ -46,7 +46,7 @@
     "stylelint-rscss": "0.4.0",
     "stylelint-scss": "3.14.2",
     "stylelint-webpack-plugin": "1.2.3",
-    "ts-jest": "23.0.0",
+    "ts-jest": "23.10.5",
     "typescript": "3.4.3",
     "vue-template-compiler": "2.6.10"
   }
